@@ -16,6 +16,7 @@ Note:
 
 
 Files have been edited to follow GEANT's Technical documentation for eduroam IdPs
+
 Configuration files that have been edited in /etc/raddb/:  
 
     proxy.conf
