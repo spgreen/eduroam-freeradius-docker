@@ -1,0 +1,59 @@
+server eduroam {
+ 
+#        listen {
+#                type = "auth"
+#                ipaddr = *
+#                port = 0
+#        }
+#        listen {
+#                type = "acct"
+#                ipaddr = *
+#                port = 0
+#        }
+ 
+        authorize {
+                filter_username
+                if (("%{client:shortname}" != "FLR1")||("%{client:shortname}" != "FLR2")) {
+                   update request {
+                           Operator-Name := "1YOUR_REALM" 
+                            # the literal number "1" above is an important prefix! Do not change it!
+                   }
+                }
+                auth_log    # logs incoming packets to the file system. Needed for eduroam SP to fulfil logging requirements
+                suffix      # inspects packets to find eduroam style realm which is seperated by the @ symbol
+                eap         # follows the configuration from /etc/raddb/mods-available/eap
+            }
+ 
+        authenticate {
+               eap
+        }
+ 
+        preacct {
+                suffix
+        }
+ 
+        accounting {
+        }
+ 
+        post-auth {
+                # if you want detailed logging
+                reply_log
+                Post-Auth-Type REJECT {
+                        reply_log   # logs the reply packet after attribute filtering to the file system
+                }
+        }
+ 
+        pre-proxy {
+                # if you want detailed logging
+                pre_proxy_log           # logs the packet to the file system again. Attributes that have been added on during inspection are now visible
+                if("%{Packet-Type}" != "Accounting-Request") {
+                        attr_filter.pre-proxy   # removes unnecessary attributes off of the request before sending the request upstream
+                }
+        }
+ 
+        post-proxy {
+                # if you want detailed logging
+                post_proxy_log              # logs the rply packet to the file system - as received by upstream
+                attr_filter.post-proxy      # strips unwanted attributes off of the reply, prior to sending it back to the Access Points (VLAN attributes in particular)
+        }
+}

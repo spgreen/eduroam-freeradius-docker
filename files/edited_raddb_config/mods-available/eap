@@ -1,0 +1,39 @@
+eap {
+                default_eap_type = peap     # change to your organisation's preferred eap type (tls, ttls, peap, mschapv2)
+                timer_expire     = 60
+                ignore_unknown_eap_types = no
+                cisco_accounting_username_bug = no
+ 
+                tls {
+                        certdir = ${confdir}/certs
+                        cadir = ${confdir}/certs
+                        private_key_password = whatever
+                        private_key_file = ${certdir}/server.key    
+                        certificate_file = ${certdir}/server.pem
+                        ca_file = ${cadir}/ca.pem
+                        dh_file = ${certdir}/dh
+                        random_file = /dev/urandom
+                        fragment_size = 1024
+                        include_length = yes
+                        check_crl = no
+                        cipher_list = "DEFAULT"
+                }
+ 
+                ttls {
+                        default_eap_type = mschapv2
+                        copy_request_to_tunnel = yes
+                        use_tunneled_reply = yes
+                        virtual_server = "eduroam-inner-tunnel"
+                }
+ 
+                peap {
+                        default_eap_type = mschapv2
+                        copy_request_to_tunnel = yes
+                        use_tunneled_reply = yes
+                        virtual_server = "eduroam-inner-tunnel"
+                }
+ 
+                mschapv2 {
+                }
+ 
+        }
