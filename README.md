@@ -32,7 +32,7 @@ Configuration files that have been created for eduroam:
     sites-enabled/eduroam-inner-tunnel
 
 
-You can view just the edited files here in their appropriate directories : 
+You can view just the edited files here in their appropriate directories here : 
 
     ./files/edited_raddb_config/
  

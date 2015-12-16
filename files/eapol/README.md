@@ -11,8 +11,8 @@ Running the script:
         ># ./test.sh testuser@<yourdomain.tld> <password> <1 or 2>
         
         
-        NOTE:   The number 1 after the password configures test.sh to send the request though your first eduroam FLR.
-                The number 2 will do the same but request will be sent to the second FLR instead.
+        NOTE:   The number 1 after the password configures test.sh to send the request though your first eduroam FLR
+                The number 2 will do the same but request will be sent to the second FLR instead
         
         Example:
             
