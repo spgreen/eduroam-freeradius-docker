@@ -30,6 +30,7 @@ RUN mkdir -p /var/log/freeradius/
 RUN touch /var/log/freeradius/radius.log
 
 
+
 EXPOSE 1812/udp
 EXPOSE 1813/udp
 WORKDIR /root
