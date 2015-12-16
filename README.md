@@ -9,6 +9,11 @@ Based off GEANT's technical documentation: https://wiki.geant.org/display/H2edur
 
 Based off lrhazi's freeradius-eduroam docker setup: https://github.com/lrhazi/freeradius-eduroam 
 
+Note:
+
+	The following symbol ">#" indicates code to be run inside the terminal as an admin user (sudo, su, sudo -s, etc)
+	The hashtag symbol "#" are the start of comments that will help you gain a better understanding of what is happening
+
 
 Files have been edited to follow GEANT's Technical documentation for eduroam IdPs
 Configuration files that have been edited in /etc/raddb/:  
@@ -71,7 +76,7 @@ Setting Up and Running your eduroam IdP FreeRADIUS Server:
 
         1. Build the Docker image from the Dockerfile using the build_eduroamFreeRADIUS.sh script
         
-        	# ./build_eduroamFreeRADIUS.sh 
+        	># ./build_eduroamFreeRADIUS.sh 
         
         Once the process is completed successfully, head to the Configuration section below.
         
@@ -89,7 +94,6 @@ Setting Up and Running your eduroam IdP FreeRADIUS Server:
             YOUR_REALM=docker.sg
             YOUR_PASSWORD=docker123
             
-	# Leave the rest of the code alone unless you know what you are doing
 
         Notes:  It links with the './files/run.sh' script to:
 					a. configure your eduroam FLR servers with their corresponding secrets and 
@@ -102,7 +106,7 @@ Setting Up and Running your eduroam IdP FreeRADIUS Server:
 
         3. Run restart_eduroamFreeRADIUS.sh:
 
-                # ./restart_eduroamFreeRADIUS.sh
+               ># ./restart_eduroamFreeRADIUS.sh
 
         4.  You will get two errors if this is your first time starting since the freeradius-eduroam 
             container will not exist. You will receive a similar hexadecimal output if the container 
@@ -117,7 +121,7 @@ Setting Up and Running your eduroam IdP FreeRADIUS Server:
     
         5. To access the container, run the access_eduroamFreeRADIUS.sh script:
 
-            # ./access_eduroamFreeRADIUS.sh
+            	># ./access_eduroamFreeRADIUS.sh
         
         
     Testing Authentication:
@@ -135,7 +139,7 @@ Setting Up and Running your eduroam IdP FreeRADIUS Server:
            
             From the variables given in Step 3, the following test.sh command will be:
                 
-                # ./test.sh testuser@docker.sg docker123 1
+                ># ./test.sh testuser@docker.sg docker123 1
             
             Note: test.sh is using eapol_test to test the eap authentication between the FLR and the Docker eduroam IdP. 
                   Currently checking through FLR1 stated by the 1 after docker123 password. Use 2 for FLR2 instead.
@@ -159,7 +163,7 @@ Setting Up and Running your eduroam IdP FreeRADIUS Server:
     
         8. To exit out of the container, use the following command:
         
-            		# exit
+            		># exit
             
             Note: The container will still be running in the background
             
@@ -167,10 +171,10 @@ Setting Up and Running your eduroam IdP FreeRADIUS Server:
     Manually Start/Stop your new FreeRADIUS eduroam IdP Container:
          
         9. Stop:
-		        # docker stop freeradius-eduroam
+		        ># docker stop freeradius-eduroam
         
         10. Start:
-       			# docker start freeradius-eduroam
+       			># docker start freeradius-eduroam
             
         
 

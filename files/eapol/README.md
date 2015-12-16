@@ -9,7 +9,7 @@ Running the script:
     1. Start in the same directory as test.sh
     2. Enter the username, password and the number 1 or 2 after test.sh as follows:
     
-        # ./test.sh testuser@<yourdomain.tld> <password> <1 or 2>
+        ># ./test.sh testuser@<yourdomain.tld> <password> <1 or 2>
         
         
         NOTE:   The number 1 after the password configures test.sh to send the request though your first eduroam FLR.
@@ -17,7 +17,7 @@ Running the script:
         
         Example:
             
-        # ./test.sh testuser@mydomain.sg test12345 1
+        ># ./test.sh testuser@mydomain.sg test12345 1
         
             a. Username: testuser@mydomain.sg
             b. Password: test12345
