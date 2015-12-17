@@ -11,8 +11,8 @@ Based off lrhazi's freeradius-eduroam docker setup found [here](https://github.c
 
 #####Note:
 
-	The following symbol ">#" indicates code to be run inside the terminal as an admin user (sudo, su, sudo -s, etc)
-	The hashtag symbols "#" are comment lines with useful information
+* The following symbol ">#" indicates code to be run inside the terminal as an admin user (sudo, su, sudo -s, etc)
+* The hashtag symbols "#" are comment lines with useful information
 
 
 #####Files have been edited to follow GÉANT's Technical documentation for eduroam Identity Providers (IdPs)
@@ -71,130 +71,148 @@ Based off lrhazi's freeradius-eduroam docker setup found [here](https://github.c
 
 ###Setting Up and Running your eduroam IdP FreeRADIUS Server:
 
-    Initial Setup:
+####Initial Setup:
     	
-    	1. Pull the spgreen/freeradius-eduroam Docker image from docker hub:
+1) Pull the spgreen/freeradius-eduroam Docker image from docker hub:
 	    
-	        ># docker pull spgreen/freeradius-eduroam
+		># docker pull spgreen/freeradius-eduroam
 	    
-	    2. Download the spgreen/eduroam-freeradius-docker package from the release page
+2) Download the spgreen/eduroam-freeradius-docker package from the release page [here](https://github.com/spgreen/eduroam-freeradius-docker/releases)
 	    
-	    3. Extract the package and enter into the directory:
+3) Extract the package and enter into the directory:
 	    	
-	    	># tar xvf v1.0.1.tar.gz; cd eduroam-freeradius-docker-1.0.1 
+		># tar xvf v1.0.1.tar.gz; cd eduroam-freeradius-docker-1.0.1 
 	    	
-	    4. If you need to edit configuration files, do so now and then continue to Step 5 - "Build the Docker Image".
-	    	Otherwise head to Step 6 - "Configuration"
+4) If you need to edit configuration files, do so now and then continue to Step 5 - "Build the Docker Image".
+   
+   Otherwise head to Step 6 - "Configuration"
     	
-    	
-    Build the Docker Image:
 
-        5. Build the Docker image from the Dockerfile using the build_eduroamFreeRADIUS.sh script
+####Build the Docker Image:
+
+5) Build the Docker image from the Dockerfile using the build_eduroamFreeRADIUS.sh script
         
-        	># ./build_eduroamFreeRADIUS.sh 
+		># ./build_eduroamFreeRADIUS.sh
         
-        Once the process is completed successfully, head to the Configuration section below.
+Once the process is completed successfully, head to the Configuration section below.
         
         
-    Configuration:
+####Configuration:
     
-        6. Configure variables in restart_eduroamFreeRADIUS.sh then save and exit
+6) Configure variables in restart_eduroamFreeRADIUS.sh then save and exit
 
-            #Edit the following varibles to provide the necessary configuration for your eduroam IdP 
-		    #in restart_eduroamFreeRADIUS.sh:
+    	#Edit the following varibles to provide the necessary configuration for your eduroam IdP 
+    	#in restart_eduroamFreeRADIUS.sh:
             
-            EDUROAM_FLR1=192.168.100.102
-            EDUROAM_FLR2=192.168.100.110
-            FLR_EDUROAM_SECRET=supertest
-            YOUR_REALM=docker.sg
-            YOUR_PASSWORD=docker123
-            ENVIRONMENT=TEST 		#Select from either TEST or PRODUCTION  
+    	EDUROAM_FLR1=192.168.100.102
+    	EDUROAM_FLR2=192.168.100.110
+    	FLR_EDUROAM_SECRET=supertest
+    	YOUR_REALM=docker.sg
+    	YOUR_PASSWORD=docker123
+    	ENVIRONMENT=TEST 			#Select from either TEST or PRODUCTION  
 
-        Notes:  It links with the './files/run.sh' script to:
-					a. configure your eduroam FLR servers with their corresponding secrets and 
-							your eduroam realm settings (yourdomain.tld) in /etc/raddb/proxy.conf
-                	b. configure your eduroam FLR servers with their secrets in /etc/raddb/clients.conf
-                	c. configure the testuser's realm and password in /etc/raddb/mods-config/files/authrorize 
-							(links to /etc/raddb/users)
-					d. configures between TEST or PRODUCTION environment. TEST gives more debug logging information
-							found in /var/log/freeradius/radius.log
+Notes:  It links with the './files/run.sh' script to:
+* configure your eduroam FLR servers with their corresponding secrets and your eduroam realm settings (yourdomain.tld) in /etc/raddb/proxy.conf
+* configure your eduroam FLR servers with their secrets in /etc/raddb/clients.conf
+* configure the testuser's realm and password in /etc/raddb/mods-config/files/authrorize (links to /etc/raddb/users)
+* configures between TEST or PRODUCTION environment. TEST gives more debug logging information found in /var/log/freeradius/radius.log
                               
-    Running:
+####Running:
 
-        7. Run restart_eduroamFreeRADIUS.sh:
+7) Run restart_eduroamFreeRADIUS.sh:
 
-               ># ./restart_eduroamFreeRADIUS.sh
+		># ./restart_eduroamFreeRADIUS.sh
 
-        8.  You will get two errors if this is your first time starting since the freeradius-eduroam 
-            container will not exist. You will receive a similar hexadecimal output if the container 
-		    	has started correctly
+8)  You will get two errors if this is your first time starting since the freeradius-eduroam container will not exist. You will receive a similar hexadecimal output if the container has started correctly
             
-                > 14c1813807d1de325de56987a8765b61f8b9e94422748349ab48aaab9976ef79
+		> 14c1813807d1de325de56987a8765b61f8b9e94422748349ab48aaab9976ef79
 
-            Now your FreeRADIUS eduroam IdP Docker container is running in the background
+Now your FreeRADIUS eduroam IdP Docker container is running in the background
         
 
-    Accessing the Container:
+####Accessing the Container:
     
-        9. To access the container, run the access_eduroamFreeRADIUS.sh script:
+9) To access the container, run the access_eduroamFreeRADIUS.sh script:
 
-            	># ./access_eduroamFreeRADIUS.sh
+		># ./access_eduroamFreeRADIUS.sh
         
         
-    Testing Authentication:
-        
-        Docker testuser:
+####Testing Authentication:
 
-        10. Use the test.sh script whilst inside the container with the username and password following the command. 
-			e.g.
+#####Docker testuser:
+
+10) Use the test.sh script whilst inside the container with the username and password following the command. e.g.
            
-            The username for the test user is: testuser@YOUR_REALM 
-                a. where YOUR_REALM is the variable that you assigned in Step 3.
+######Username for the test user:
+
+		testuser@YOUR_REALM 
+
+  where YOUR_REALM is the variable that you assigned in Step 3.  
+  
+             
+             
+######Password: 
+
+		TEST_PASSWORD
+
+where TEST_PASSWORD is the variable that you assigned in Step 3  
+
+
+######FLR Server: 
+Enter the number 1 or 2 to indicate which FLR server you wish to send the request to.
+
+		1 = EDUROAM_FLR1
+		2 = EDUROAM_FLR2
            
-            Password is: TEST_PASSWORD
-                b. where TEST_PASSWORD is the variable that you assigned in Step 3
-            
-            After the password, enter the number 1 or 2 to indicate which FLR server you wish to send the request to.
-            	c. 1 = EDUROAM_FLR1
-            	   2 = EDUROAM_FLR2
-           
-            From the variables given in Step 3, the following test.sh command will be:
+From the variables given in Step 3 and choosing EDUROAM_FLR1, the following test.sh command will be:
                 
-                ># ./test.sh testuser@docker.sg docker123 1
-            
-            Note: test.sh is using eapol_test to test the eap authentication between the FLR and the Docker eduroam IdP.
-            	  If you want to see a more indepth view of the authentication process, view the log file located here:
+		># ./test.sh testuser@docker.sg docker123 1
+    
+    
+Execute the command. You will then receive either of these two messages:
+
+	"SUCCESS" - the user has successfully authenticated 
+	
+	"FAILIURE" - the user has failed authentication. Possible issues:
+
+        	a. Mistyped user credentials
+        	b. User does not exist
+        	c. FLR Server active but not configured correctly
+        	d. FLR Server offline     
+
+Note: test.sh is using eapol_test to test the eap authentication between the FLR and the Docker eduroam IdP. If you want to see a more in-depth view of the authentication process, view the log file located here (**only in TEST environment**):
                    
-                        /var/log/freeradius/radius.log
+	/var/log/freeradius/radius.log
                         
-                  This will give you a good idea if something has gone wrong
+The log will give you a good idea if something has gone wrong
 
                   
-        Other Users within eduroam:
+#####Other Users within eduroam:
 
-        11. Follow the same process as in Step 9 but using a different username and password. 
-           The username and password must belong to an account that exists within your country's 
-           eduroam network.
+11) Follow the same process as in Step 9 but using a different username and password.
+The username and password must belong to an account that exists within your country's eduroam network.
                        
-           If both tests succeed, then your eduroam IdP FreeRADIUS is working correctly.
+If both tests succeed, then your eduroam IdP FreeRADIUS is working correctly.
         
                
-    Exiting from the Docker FreeRADIUS Container:
+####Exiting from the Docker FreeRADIUS Container:
     
-        12. To exit out of the container, use the following command:
+12) To exit out of the container, use the following command:
         
-            		># exit
+		># exit
+
+Note: The container will still be running in the background
             
-            Note: The container will still be running in the background
             
-            
-    Manually Start/Stop your new FreeRADIUS eduroam IdP Container:
+####Manually Start/Stop your new FreeRADIUS eduroam IdP Container:
          
-        13. Stop:
-		        ># docker stop freeradius-eduroam
+13) Stop:
+	
+		># docker stop freeradius-eduroam
         
-        14. Start:
-       			># docker start freeradius-eduroam
+14) Start:
+   
+   		># docker start freeradius-eduroam
             
         
 
