@@ -94,7 +94,7 @@ Setting Up and Running your eduroam IdP FreeRADIUS Server:
             FLR_EDUROAM_SECRET=supertest
             YOUR_REALM=docker.sg
             YOUR_PASSWORD=docker123
-	    ENVIRONMENT=TEST #TEST or PRODUCTION  
+            ENVIRONMENT=TEST #TEST or PRODUCTION  
 
         Notes:  It links with the './files/run.sh' script to:
 					a. configure your eduroam FLR servers with their corresponding secrets and 
