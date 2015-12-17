@@ -52,10 +52,8 @@ Based off lrhazi's freeradius-eduroam docker setup found [here](https://github.c
 
 
 ####Pre-Requisites: 
-	
-    A machine running Docker:
-		a. Public address for production environment or,
-		b. Private address of an internal testing cluster.                   
+
+A machine running Docker
 
 	
 ####Pre-Build Check:                    
@@ -68,8 +66,7 @@ The original files can be found here:
 
 		files/etc.ORIGINAL/raddb/                    
 
-If not, head to "Setting Up and Running your eduroam IdP FreeRADIUS Server" below                
-                    
+  
 
 ###Setting Up and Running your eduroam IdP FreeRADIUS Server:
 
