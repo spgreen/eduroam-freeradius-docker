@@ -12,7 +12,7 @@ Based off lrhazi's freeradius-eduroam docker setup: https://github.com/lrhazi/fr
 Note:
 
 	The following symbol ">#" indicates code to be run inside the terminal as an admin user (sudo, su, sudo -s, etc)
-	The hashtag symbol "#" are the start of comments that will help you gain a better understanding of what is happening
+	The hashtag symbols "#" are comment lines with useful information
 
 
 Files have been edited to follow GEANT's Technical documentation for eduroam IdPs
@@ -102,8 +102,8 @@ Setting Up and Running your eduroam IdP FreeRADIUS Server:
                 	b. configure your eduroam FLR servers with their secrets in /etc/raddb/clients.conf
                 	c. configure the testuser's realm and password in /etc/raddb/mods-config/files/authrorize 
 							(links to /etc/raddb/users)
-			d. configures between TEST or PRODUCTION environment. TEST gives more debug logging information
-					found in /var/log/freeradius/radius.log
+					d. configures between TEST or PRODUCTION environment. TEST gives more debug logging information
+							found in /var/log/freeradius/radius.log
                               
     Running:
 
@@ -135,10 +135,10 @@ Setting Up and Running your eduroam IdP FreeRADIUS Server:
 			e.g.
            
             The username for the test user is: testuser@YOUR_REALM 
-                where YOUR_REALM is the variable that you assigned in Step 3.
+                a. where YOUR_REALM is the variable that you assigned in Step 3.
            
             Password is: TEST_PASSWORD
-                where TEST_PASSWORD is the variable that you assigned in Step 3
+                b. where TEST_PASSWORD is the variable that you assigned in Step 3
            
             From the variables given in Step 3, the following test.sh command will be:
                 
