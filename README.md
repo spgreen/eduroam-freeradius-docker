@@ -9,15 +9,15 @@ Based off GÉANT's technical documentation found [here](https://wiki.geant.org/d
 
 Based off lrhazi's freeradius-eduroam docker setup found [here](https://github.com/lrhazi/freeradius-eduroam ).
 
-####Note:
+#####Note:
 
 	The following symbol ">#" indicates code to be run inside the terminal as an admin user (sudo, su, sudo -s, etc)
 	The hashtag symbols "#" are comment lines with useful information
 
 
-####Files have been edited to follow GEANT's Technical documentation for eduroam IdPs
+#####Files have been edited to follow GÉANT's Technical documentation for eduroam Identity Providers (IdPs)
 
-#####Configuration files that have been edited in /etc/raddb/:  
+######Configuration files that have been edited in /etc/raddb/:  
 
     proxy.conf
     clients.conf 
@@ -26,18 +26,18 @@ Based off lrhazi's freeradius-eduroam docker setup found [here](https://github.c
     mods-available/eap
     mods-config/attr_filter/pre-proxy
                                                             
-#####Configuration files that have been created for eduroam:    
+######Configuration files that have been created for eduroam:    
  
     sites-enabled/eduroam  
     sites-enabled/eduroam-inner-tunnel
 
 
-You can view just the edited files here in their appropriate directories here : 
+######You can view just the edited files in their appropriate directories here : 
 
-    ./files/edited_raddb_config/
+    files/edited_raddb_config/
  
 
-#####Three script files: 
+#####Script files: 
 
     build_eduroamFreeRADIUS.sh          # rebuilds freeradius-eduroam Docker image files. Edit configuration 
 		    							# files first in /files/etc/raddb/* for your eduroam IdP configuration
@@ -58,15 +58,13 @@ You can view just the edited files here in their appropriate directories here :
 		b. Private address of an internal testing cluster.                   
 
 	
-####Pre-Build:                    
+####Pre-Build Check:                    
                     
-    If you need to edit and configure files to personalise you FreeRADIUS eduroam IdP server, please edit them here:   
+    Edit files in the following directory if you want to add extra features to your FreeRADIUS eduroam IdP Server:
         
-		./files/etc/raddb/
+		files/etc/raddb/
   
-    The original unedited files can be found here:
-
-		./files/etc.ORIGINAL/raddb/                    
+    The original files can be found here:	files/etc.ORIGINAL/raddb/                    
 
     If not, head to "Setting Up and Running your eduroam IdP FreeRADIUS Server" below                
                     
