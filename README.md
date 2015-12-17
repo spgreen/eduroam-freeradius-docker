@@ -1,4 +1,4 @@
-sgreen/freeradius-eduroam
+spgreen/eduroam-freeradius-docker
 
 README Author: Simon Green
 
@@ -139,14 +139,17 @@ Setting Up and Running your eduroam IdP FreeRADIUS Server:
            
             Password is: TEST_PASSWORD
                 b. where TEST_PASSWORD is the variable that you assigned in Step 3
+            
+            After the password, enter the number 1 or 2 to indicate which FLR server you wish to send the request to.
+            	1 = EDUROAM_FLR1
+            	2 = EDUROAM_FLR2
            
             From the variables given in Step 3, the following test.sh command will be:
                 
                 ># ./test.sh testuser@docker.sg docker123 1
             
-            Note: test.sh is using eapol_test to test the eap authentication between the FLR and the Docker eduroam IdP. 
-                  Currently checking through FLR1 stated by the 1 after docker123 password. Use 2 for FLR2 instead.
-                  If you want to see a more indepth view of the authentication process, view the log file located here:
+            Note: test.sh is using eapol_test to test the eap authentication between the FLR and the Docker eduroam IdP.
+            	  If you want to see a more indepth view of the authentication process, view the log file located here:
                    
                         /var/log/freeradius/radius.log
                         
@@ -156,10 +159,10 @@ Setting Up and Running your eduroam IdP FreeRADIUS Server:
         Other Users within eduroam:
 
         7. Follow the same process as in Step 9 but using a different username and password. 
-	   The username and password must belong to an account that exists within your country's 
-	   eduroam network.
+           The username and password must belong to an account that exists within your country's 
+           eduroam network.
                        
-           If both tests work successfully, then your eduroam IdP FreeRADIUS is working correctly.
+           If both tests succeed, then your eduroam IdP FreeRADIUS is working correctly.
         
                
     Exiting from the Docker FreeRADIUS Container:
