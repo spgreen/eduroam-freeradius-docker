@@ -5,9 +5,9 @@ README Author: Simon Green
 
 Docker image which allows the user to create a FreeRADIUS server with bare minimum eduroam presets, within a Docker container.
 
-Based off GEANT's technical documentation found [here](https://wiki.geant.org/display/H2eduroam/How+to+deploy+eduroam+on-site+or+on+campus#Howtodeployeduroamon-siteoroncampus-FreeRADIUS)
+Based off GÉANT's technical documentation found [here.](https://wiki.geant.org/display/H2eduroam/How+to+deploy+eduroam+on-site+or+on+campus#Howtodeployeduroamon-siteoroncampus-FreeRADIUS)
 
-Based off lrhazi's freeradius-eduroam docker setup found [here](https://github.com/lrhazi/freeradius-eduroam )
+Based off lrhazi's freeradius-eduroam docker setup found [here.](https://github.com/lrhazi/freeradius-eduroam )
 
 ####Note:
 
