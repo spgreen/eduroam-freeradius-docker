@@ -53,14 +53,14 @@ Based off lrhazi's freeradius-eduroam docker setup found [here](https://github.c
 
 ####Pre-Requisites: 
 	
-    A machine running docker:
+    A machine running Docker:
 		a. Public address for production environment or,
 		b. Private address of an internal testing cluster.                   
 
 	
 ####Pre-Build Check:                    
                     
-    Edit files in the following directory if you want to add extra features to your FreeRADIUS eduroam IdP Server:
+    Edit files in the following directory during Step 4 to add extra features to your FreeRADIUS eduroam IdP Server:
         
 		files/etc/raddb/
   
@@ -70,10 +70,26 @@ Based off lrhazi's freeradius-eduroam docker setup found [here](https://github.c
                     
 
 ###Setting Up and Running your eduroam IdP FreeRADIUS Server:
-    
+
+    Initial Setup:
+    	
+    	1. Pull the spgreen/freeradius-eduroam Docker image from docker hub:
+	    
+	        ># docker pull spgreen/freeradius-eduroam
+	    
+	    2. Download the spgreen/eduroam-freeradius-docker package from the release page
+	    
+	    3. Extract the package and enter into the directory:
+	    	
+	    	># tar xvf v1.0.1.tar.gz; cd eduroam-freeradius-docker-1.0.1 
+	    	
+	    4. If you need to edit configuration files, do so now and then continue to Step 5 - "Build the Docker Image".
+	    	Otherwise head to Step 6 - "Configuration"
+    	
+    	
     Build the Docker Image:
 
-        1. Build the Docker image from the Dockerfile using the build_eduroamFreeRADIUS.sh script
+        5. Build the Docker image from the Dockerfile using the build_eduroamFreeRADIUS.sh script
         
         	># ./build_eduroamFreeRADIUS.sh 
         
@@ -82,7 +98,7 @@ Based off lrhazi's freeradius-eduroam docker setup found [here](https://github.c
         
     Configuration:
     
-        2. Configure variables in restart_eduroamFreeRADIUS.sh then save and exit
+        6. Configure variables in restart_eduroamFreeRADIUS.sh then save and exit
 
             #Edit the following varibles to provide the necessary configuration for your eduroam IdP 
 		    #in restart_eduroamFreeRADIUS.sh:
@@ -92,7 +108,7 @@ Based off lrhazi's freeradius-eduroam docker setup found [here](https://github.c
             FLR_EDUROAM_SECRET=supertest
             YOUR_REALM=docker.sg
             YOUR_PASSWORD=docker123
-            ENVIRONMENT=TEST #TEST or PRODUCTION  
+            ENVIRONMENT=TEST 		#Select from either TEST or PRODUCTION  
 
         Notes:  It links with the './files/run.sh' script to:
 					a. configure your eduroam FLR servers with their corresponding secrets and 
@@ -105,11 +121,11 @@ Based off lrhazi's freeradius-eduroam docker setup found [here](https://github.c
                               
     Running:
 
-        3. Run restart_eduroamFreeRADIUS.sh:
+        7. Run restart_eduroamFreeRADIUS.sh:
 
                ># ./restart_eduroamFreeRADIUS.sh
 
-        4.  You will get two errors if this is your first time starting since the freeradius-eduroam 
+        8.  You will get two errors if this is your first time starting since the freeradius-eduroam 
             container will not exist. You will receive a similar hexadecimal output if the container 
 		    	has started correctly
             
@@ -120,7 +136,7 @@ Based off lrhazi's freeradius-eduroam docker setup found [here](https://github.c
 
     Accessing the Container:
     
-        5. To access the container, run the access_eduroamFreeRADIUS.sh script:
+        9. To access the container, run the access_eduroamFreeRADIUS.sh script:
 
             	># ./access_eduroamFreeRADIUS.sh
         
@@ -129,7 +145,7 @@ Based off lrhazi's freeradius-eduroam docker setup found [here](https://github.c
         
         Docker testuser:
 
-        6. Use the test.sh script whilst inside the container with the username and password following the command. 
+        10. Use the test.sh script whilst inside the container with the username and password following the command. 
 			e.g.
            
             The username for the test user is: testuser@YOUR_REALM 
@@ -156,7 +172,7 @@ Based off lrhazi's freeradius-eduroam docker setup found [here](https://github.c
                   
         Other Users within eduroam:
 
-        7. Follow the same process as in Step 9 but using a different username and password. 
+        11. Follow the same process as in Step 9 but using a different username and password. 
            The username and password must belong to an account that exists within your country's 
            eduroam network.
                        
@@ -165,7 +181,7 @@ Based off lrhazi's freeradius-eduroam docker setup found [here](https://github.c
                
     Exiting from the Docker FreeRADIUS Container:
     
-        8. To exit out of the container, use the following command:
+        12. To exit out of the container, use the following command:
         
             		># exit
             
@@ -174,10 +190,10 @@ Based off lrhazi's freeradius-eduroam docker setup found [here](https://github.c
             
     Manually Start/Stop your new FreeRADIUS eduroam IdP Container:
          
-        9. Stop:
+        13. Stop:
 		        ># docker stop freeradius-eduroam
         
-        10. Start:
+        14. Start:
        			># docker start freeradius-eduroam
             
         
