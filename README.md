@@ -60,13 +60,15 @@ Based off lrhazi's freeradius-eduroam docker setup found [here](https://github.c
 	
 ####Pre-Build Check:                    
                     
-    Edit files in the following directory during Step 4 to add extra features to your FreeRADIUS eduroam IdP Server:
+Edit files in the following directory during Step 4 to add extra features to your FreeRADIUS eduroam IdP Server:
         
 		files/etc/raddb/
   
-    The original files can be found here:	files/etc.ORIGINAL/raddb/                    
+The original files can be found here:	
 
-    If not, head to "Setting Up and Running your eduroam IdP FreeRADIUS Server" below                
+		files/etc.ORIGINAL/raddb/                    
+
+If not, head to "Setting Up and Running your eduroam IdP FreeRADIUS Server" below                
                     
 
 ###Setting Up and Running your eduroam IdP FreeRADIUS Server:
