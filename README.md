@@ -51,14 +51,14 @@ You can view just the edited files here in their appropriate directories here :
     									# other for testing accounts
 
 
-#####Pre-Requisites: 
+####Pre-Requisites: 
 	
     A machine running docker:
 		a. Public address for production environment or,
 		b. Private address of an internal testing cluster.                   
 
 	
-#####Pre-Build:                    
+####Pre-Build:                    
                     
     If you need to edit and configure files to personalise you FreeRADIUS eduroam IdP server, please edit them here:   
         
