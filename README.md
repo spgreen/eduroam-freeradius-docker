@@ -15,7 +15,7 @@ Based off lrhazi's freeradius-eduroam docker setup found [here](https://github.c
 	The hashtag symbols "#" are comment lines with useful information
 
 
-Files have been edited to follow GEANT's Technical documentation for eduroam IdPs
+####Files have been edited to follow GEANT's Technical documentation for eduroam IdPs
 
 #####Configuration files that have been edited in /etc/raddb/:  
 
