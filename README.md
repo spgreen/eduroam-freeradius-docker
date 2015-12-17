@@ -94,7 +94,7 @@ Setting Up and Running your eduroam IdP FreeRADIUS Server:
             FLR_EDUROAM_SECRET=supertest
             YOUR_REALM=docker.sg
             YOUR_PASSWORD=docker123
-            
+	    ENVIRONMENT=TEST #TEST or PRODUCTION  
 
         Notes:  It links with the './files/run.sh' script to:
 					a. configure your eduroam FLR servers with their corresponding secrets and 
@@ -102,6 +102,8 @@ Setting Up and Running your eduroam IdP FreeRADIUS Server:
                 	b. configure your eduroam FLR servers with their secrets in /etc/raddb/clients.conf
                 	c. configure the testuser's realm and password in /etc/raddb/mods-config/files/authrorize 
 							(links to /etc/raddb/users)
+			d. configures between TEST or PRODUCTION environment. TEST gives more debug logging information
+					found in /var/log/freeradius/radius.log
                               
     Running:
 
