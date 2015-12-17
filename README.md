@@ -1,15 +1,15 @@
-spgreen/eduroam-freeradius-docker
+##spgreen/eduroam-freeradius-docker
 
 README Author: Simon Green
 
 
 Docker image which allows the user to create a FreeRADIUS server with bare minimum eduroam presets, within a Docker container.
 
-Based off GEANT's technical documentation: https://wiki.geant.org/display/H2eduroam/How+to+deploy+eduroam+on-site+or+on+campus
+Based off GEANT's technical documentation found [here](https://wiki.geant.org/display/H2eduroam/How+to+deploy+eduroam+on-site+or+on+campus#Howtodeployeduroamon-siteoroncampus-FreeRADIUS)
 
-Based off lrhazi's freeradius-eduroam docker setup: https://github.com/lrhazi/freeradius-eduroam 
+Based off lrhazi's freeradius-eduroam docker setup found [here](https://github.com/lrhazi/freeradius-eduroam )
 
-Note:
+####Note:
 
 	The following symbol ">#" indicates code to be run inside the terminal as an admin user (sudo, su, sudo -s, etc)
 	The hashtag symbols "#" are comment lines with useful information
@@ -17,7 +17,7 @@ Note:
 
 Files have been edited to follow GEANT's Technical documentation for eduroam IdPs
 
-Configuration files that have been edited in /etc/raddb/:  
+#####Configuration files that have been edited in /etc/raddb/:  
 
     proxy.conf
     clients.conf 
@@ -26,7 +26,7 @@ Configuration files that have been edited in /etc/raddb/:
     mods-available/eap
     mods-config/attr_filter/pre-proxy
                                                             
-Configuration files that have been created for eduroam:    
+#####Configuration files that have been created for eduroam:    
  
     sites-enabled/eduroam  
     sites-enabled/eduroam-inner-tunnel
@@ -37,7 +37,7 @@ You can view just the edited files here in their appropriate directories here :
     ./files/edited_raddb_config/
  
 
-Three script files: 
+#####Three script files: 
 
     build_eduroamFreeRADIUS.sh          # rebuilds freeradius-eduroam Docker image files. Edit configuration 
 		    							# files first in /files/etc/raddb/* for your eduroam IdP configuration
@@ -51,14 +51,14 @@ Three script files:
     									# other for testing accounts
 
 
-Pre-Requisites: 
+#####Pre-Requisites: 
 	
     A machine running docker:
 		a. Public address for production environment or,
 		b. Private address of an internal testing cluster.                   
 
 	
-Pre-Build:                    
+#####Pre-Build:                    
                     
     If you need to edit and configure files to personalise you FreeRADIUS eduroam IdP server, please edit them here:   
         
@@ -71,7 +71,7 @@ Pre-Build:
     If not, head to "Setting Up and Running your eduroam IdP FreeRADIUS Server" below                
                     
 
-Setting Up and Running your eduroam IdP FreeRADIUS Server:
+###Setting Up and Running your eduroam IdP FreeRADIUS Server:
     
     Build the Docker Image:
 
