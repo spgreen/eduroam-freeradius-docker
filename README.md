@@ -141,8 +141,8 @@ You can view just the edited files here in their appropriate directories here :
                 b. where TEST_PASSWORD is the variable that you assigned in Step 3
             
             After the password, enter the number 1 or 2 to indicate which FLR server you wish to send the request to.
-            	1 = EDUROAM_FLR1
-            	2 = EDUROAM_FLR2
+            	c. 1 = EDUROAM_FLR1
+            	   2 = EDUROAM_FLR2
            
             From the variables given in Step 3, the following test.sh command will be:
                 
