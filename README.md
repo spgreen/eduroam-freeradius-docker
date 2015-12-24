@@ -80,7 +80,7 @@ The original files can be found here:
 	    
 3) Extract the package and enter into the directory:
 	    	
-		># tar xvf v1.0.1.tar.gz; cd eduroam-freeradius-docker-1.0.1 
+		># tar xvf v1.0.2.tar.gz; cd eduroam-freeradius-docker-1.0.2 
 	    	
 4) If you need to edit configuration files, do so now and then continue to Step 5 - "Build the Docker Image".
    
