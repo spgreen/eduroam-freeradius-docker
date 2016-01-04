@@ -53,8 +53,15 @@ Based off lrhazi's freeradius-eduroam docker setup found [here](https://github.c
 
 ####Pre-Requisites: 
 
-A machine running Docker
+A machine running Docker:
 
+* [Ubuntu Installation & Quickstart Guide](https://docs.docker.com/linux/)
+
+* [Windows Installation & Quickstart Guide](https://docs.docker.com/windows/)
+
+* [Mac Installation & Quickstart Guide](https://docs.docker.com/mac/)
+
+* [Other OS Installation Guide](https://docs.docker.com/v1.8/installation/)
 	
 ####Pre-Build Check:                    
                     
