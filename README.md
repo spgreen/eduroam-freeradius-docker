@@ -121,7 +121,7 @@ Once the process is completed successfully, head to the Configuration section be
 Notes:  It links with the './files/run.sh' script to:
 * configure your eduroam FLR servers with their corresponding secrets and your eduroam realm settings (yourdomain.tld) in /etc/raddb/proxy.conf
 * configure your eduroam FLR servers with their secrets in /etc/raddb/clients.conf
-* configure the testuser's realm and password in /etc/raddb/mods-config/files/authrorize (links to /etc/raddb/users)
+* configure the testuser's realm and password in /etc/raddb/mods-config/files/authrorize 
 * configures between TEST or PRODUCTION environment. TEST gives more debug logging information found in /var/log/freeradius/radius.log
                               
 ####Running:
