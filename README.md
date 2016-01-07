@@ -109,9 +109,10 @@ Once the process is completed successfully, head to the Configuration section be
 
     	#Edit the following varibles to provide the necessary configuration for your eduroam IdP 
     	#in restart_eduroamFreeRADIUS.sh:
-            
+        
+        NO_OF_FLR_SERVERS=1			#Select number of FLR servers in your eduroam setup (between 1 to 2)    
     	EDUROAM_FLR1=192.168.100.102
-    	EDUROAM_FLR2=192.168.100.110
+    	EDUROAM_FLR2=192.168.100.110		#If you only have 1 FLR Server, you can leave this variable blank
     	FLR_EDUROAM_SECRET=supertest
     	YOUR_REALM=docker.sg
     	YOUR_PASSWORD=docker123
