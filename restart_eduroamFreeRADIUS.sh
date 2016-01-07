@@ -4,7 +4,7 @@ NO_OF_FLR_SERVERS=2 #Select the number of FLR servers that your eduroam setup us
 EDUROAM_FLR1=192.168.100.102
 EDUROAM_FLR2=192.168.100.110
 FLR_EDUROAM_SECRET=supertest
-YOUR_REALM=pern.edu.pk
+YOUR_REALM=docker.sg
 TEST_PASSWORD=docker123
 ENVIRONMENT=TEST #TEST or PRODUCTION
 
