@@ -23,7 +23,7 @@ Based off lrhazi's freeradius-eduroam docker setup found [here](https://github.c
     proxy.conf
     clients.conf 
     radiusd.conf
-    mods-config/files/authrorize   #new /etc/raddb/users configuration
+    mods-config/files/authrorize   #new location for /etc/raddb/users 
     mods-available/eap
     mods-config/attr_filter/pre-proxy
                                                             
