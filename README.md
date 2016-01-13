@@ -97,7 +97,7 @@ The original files can be found here:
 	    
 3) Extract the file and enter its directory if the package was downloaded from the release page:
 	    	
-    	># tar xvf eduroam-freeradius-docker-1.0.2.tar.gz; cd eduroam-freeradius-docker-1.0.2 
+		$ tar xvf eduroam-freeradius-docker-1.0.2.tar.gz; cd eduroam-freeradius-docker-1.0.2 
 
 otherwise enter into the directory if git clone was used
 
