@@ -22,7 +22,7 @@ Based off lrhazi's freeradius-eduroam docker setup found [here](https://github.c
     proxy.conf
     clients.conf 
     radiusd.conf
-    mods-config/files/authrorize   #links to /etc/raddb/users
+    mods-config/files/authrorize   #new /etc/raddb/users configuration
     mods-available/eap
     mods-config/attr_filter/pre-proxy
                                                             
@@ -221,6 +221,53 @@ Note: The container will still be running in the background
    
    		># docker start freeradius-eduroam
             
+            
+            
+            
+###Adding Extra configurations to your FreeRADIUS eduroam Container
+
+Let's say that you need to add a couple of Access Point configurations to clients.conf for your eduroam infrastructure. 
+
+This process can be easily completed with the following steps:
+
+1) Edit clients.conf found within files/etc/raddb/clients.conf in the GitHub Package/cloned directory.
+
+	$ vi files/etc/raddb/clients.conf
+
+2) Add the client definition at the bottom of the file and at least a line after the FLR2 client definition. Otherwise the restart script may cause unnecessary commenting when running restart_eduroamFreeRADIUS.sh with NO_OF_FLR_SERVERS=1.
+
+**IMPORTANT:** Place extra client definitions under the client FLR2 definition!
+
+**EXTRA IMPORTANT: DO NOT** remove the client FLR2 definition even if you are only running one FLR!
+
+
+	client FLR2 {
+		ipaddr		= EDUROAM_FLR2
+	        secret          = FLR_EDUROAM_SECRET
+	        shortname       = FLR2
+	        nas_type        = other
+	    	virtual_server = eduroam
+		}
+		
+	client <AP IP address> {
+		secret = <somesecret>
+		shortname = <descriptive name>
+		nastype = other
+		}
+
+2) Save and exit. 
+
+3) Run the build_eduroamFreeRADIUS.sh script to rebuild the FreeRADIUS Docker image.
+	
+	># ./build_eduroamFreeRADIUS.sh
+
+4) Run the restart_eduroamFreeRADIUS.sh script which will start the Docker container using your newly built Docker image with the new configurations. 
+
+	># ./restart_eduroamFreeRADIUS.sh
+
+Note: If the Docker container does not start, the added configuration is not valid
+
+	
         
 
 
