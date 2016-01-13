@@ -93,11 +93,11 @@ The original files can be found here:
  
  2. Git clone the package to your system. Ensure git is installed on your system.
 	
-		git clone https://github.com/spgreen/eduroam-freeradius-docker.git
+    	$ git clone https://github.com/spgreen/eduroam-freeradius-docker.git
 	    
 3) Extract the file and enter its directory if the package was downloaded from the release page:
 	    	
-		># tar xvf eduroam-freeradius-docker-1.0.2.tar.gz; cd eduroam-freeradius-docker-1.0.2 
+    	># tar xvf eduroam-freeradius-docker-1.0.2.tar.gz; cd eduroam-freeradius-docker-1.0.2 
 
 otherwise enter into the directory if git clone was used
 
