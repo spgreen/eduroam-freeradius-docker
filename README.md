@@ -11,7 +11,8 @@ Based off lrhazi's freeradius-eduroam docker setup found [here](https://github.c
 
 #####Note:
 
-* The following symbol ">#" indicates code to be run inside the terminal as an admin user (sudo, su, sudo -s, etc)
+* The following symbol "$" indicates code to be run inside the terminal 
+* The following symbol ">#" indicates code to be run inside the terminal as a super user (sudo 'command', su, sudo -s)
 * The hashtag symbols "#" are comment lines with useful information
 
 
@@ -82,14 +83,29 @@ The original files can be found here:
 1) Pull the spgreen/freeradius-eduroam Docker image from docker hub:
 	    
 		># docker pull spgreen/freeradius-eduroam
+
+
+2) Two methods of acquiring the eduroam-freeradius-docker package
+ 
+ 1. Download the spgreen/eduroam-freeradius-docker package from the release page [here](https://github.com/spgreen/eduroam-freeradius-docker/releases) 
+ 
+ or  
+ 
+ 2. Git clone the package to your system. Ensure git is installed on your system.
+	
+		git clone https://github.com/spgreen/eduroam-freeradius-docker.git
 	    
-2) Download the spgreen/eduroam-freeradius-docker package from the release page [here](https://github.com/spgreen/eduroam-freeradius-docker/releases)
-	    
-3) Extract the package and enter into the directory:
+3) Extract the file and enter its directory if the package was downloaded from the release page:
 	    	
 		># tar xvf eduroam-freeradius-docker-1.0.2.tar.gz; cd eduroam-freeradius-docker-1.0.2 
-	    	
+
+otherwise enter into the directory if git clone was used
+
+		$ cd eduroam-freeradius-docker
+		
 4) If you need to edit configuration files, do so now and then continue to Step 5 - "Build the Docker Image".
+
+   Note: Tutorial for adding additional configurations can be found in "Adding Extra Configurations to your FreeRADIUS eduroam Container" section of this README. 
    
    Otherwise head to Step 6 - "Configuration"
     	
@@ -256,13 +272,13 @@ This process can be easily completed with the following steps:
 		nastype = other
 		}
 
-2) Save and exit. 
+Save and exit. 
 
-3) Run the build_eduroamFreeRADIUS.sh script to rebuild the FreeRADIUS Docker image.
+3) Run build_eduroamFreeRADIUS.sh to rebuild the FreeRADIUS Docker image with your newly added configurations.
 	
 	># ./build_eduroamFreeRADIUS.sh
 
-4) Run the restart_eduroamFreeRADIUS.sh script which will start the Docker container using your newly built Docker image with the new configurations. 
+4) Run  restart_eduroamFreeRADIUS.sh  to start the Docker container using your newly built Docker image.
 
 	># ./restart_eduroamFreeRADIUS.sh
 
