@@ -223,8 +223,9 @@ Note: The container will still be running in the background
             
             
             
+___
             
-###Adding Extra configurations to your FreeRADIUS eduroam Container
+###Adding Extra Configurations to your FreeRADIUS eduroam Container
 
 Let's say that you need to add a couple of Access Point configurations to clients.conf for your eduroam infrastructure. 
 
