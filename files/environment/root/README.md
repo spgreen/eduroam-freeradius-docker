@@ -1,4 +1,4 @@
-test.sh README
+##test.sh README
 
 test.sh is a shell script which uses eapol_test progmra from the wpa_supplicant package to authenticate an eduroam formatted username and password against the appropriate servers.
 
