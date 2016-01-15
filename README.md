@@ -91,13 +91,13 @@ A machine running Docker:
     	#Edit the following varibles to provide the necessary configuration for your eduroam IdP 
     	#in restart_eduroamFreeRADIUS.sh:
         
-        NO_OF_FLR_SERVERS=1			#Select number of FLR servers in your eduroam setup (between 1 to 2)    
+        NO_OF_FLR_SERVERS=1				#Select number of FLR servers in your eduroam setup (between 1 to 2)    
     	EDUROAM_FLR1=192.168.100.102
     	EDUROAM_FLR2=192.168.100.110	#A random IP is still needed for only 1 FLR; otherwise it will not start 
     	FLR_EDUROAM_SECRET=supertest
     	YOUR_REALM=docker.sg
     	YOUR_PASSWORD=docker123
-    	ENVIRONMENT=TEST 			#Select from either TEST or PRODUCTION  
+    	ENVIRONMENT=TEST 				#Select from either TEST or PRODUCTION  
 
 Notes:  It links with the './files/environment/root/run.sh' script to:
 * configure your eduroam FLR servers with their corresponding secrets and your eduroam realm settings (yourdomain.tld) in /etc/raddb/proxy.conf
