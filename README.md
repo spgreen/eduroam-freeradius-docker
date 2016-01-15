@@ -68,7 +68,7 @@ A machine running Docker:
                     
 Edit files in the following directory during Step 4 to add extra features to your FreeRADIUS eduroam IdP Server:
         
-		files/etc/raddb/
+		files/environment/etc/raddb/
   
 The original files can be found here:	
 
@@ -85,21 +85,11 @@ The original files can be found here:
 		># docker pull spgreen/freeradius-eduroam
 
 
-2) Two methods of acquiring the eduroam-freeradius-docker package
- 
- 1. Download the spgreen/eduroam-freeradius-docker package from the release page [here](https://github.com/spgreen/eduroam-freeradius-docker/releases) 
- 
- or  
- 
- 2. Git clone the package to your system. Ensure git is installed on your system.
+2) Git clone the package to your system. Ensure git is installed on your system.
 	
-    	$ git clone https://github.com/spgreen/eduroam-freeradius-docker.git
+    	$ git clone https://github.com/spgreen/eduroam-freeradius-docker
 	    
-3) Extract the file and enter its directory if the package was downloaded from the release page:
-	    	
-		$ tar xvf eduroam-freeradius-docker-1.0.2.tar.gz; cd eduroam-freeradius-docker-1.0.2 
-
-otherwise enter into the directory if git clone was used
+3) Enter into the cloned directory
 
 		$ cd eduroam-freeradius-docker
 		
@@ -134,7 +124,7 @@ Once the process is completed successfully, head to the Configuration section be
     	YOUR_PASSWORD=docker123
     	ENVIRONMENT=TEST 			#Select from either TEST or PRODUCTION  
 
-Notes:  It links with the './files/run.sh' script to:
+Notes:  It links with the './files/environment/root/run.sh' script to:
 * configure your eduroam FLR servers with their corresponding secrets and your eduroam realm settings (yourdomain.tld) in /etc/raddb/proxy.conf
 * configure your eduroam FLR servers with their secrets in /etc/raddb/clients.conf
 * configure the testuser's realm and password in /etc/raddb/mods-config/files/authrorize 
@@ -247,9 +237,9 @@ Let's say that you need to add a couple of Access Point configurations to client
 
 This process can be easily completed with the following steps:
 
-1) Edit clients.conf found within files/etc/raddb/clients.conf in the GitHub Package/cloned directory.
+1) Edit clients.conf found within files/environment/etc/raddb/clients.conf in the GitHub Package/cloned directory.
 
-	$ vi files/etc/raddb/clients.conf
+	$ vi files/environment/etc/raddb/clients.conf
 
 2) Add the client definition at the bottom of the file and at least a line after the FLR2 client definition. Otherwise the restart script may cause unnecessary commenting when running restart_eduroamFreeRADIUS.sh with NO_OF_FLR_SERVERS=1.
 
