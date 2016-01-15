@@ -36,8 +36,7 @@ Based off lrhazi's freeradius-eduroam docker setup found [here](https://github.c
 ######You can view just the edited files in their appropriate directories here : 
 
     files/edited_raddb_config/
- 
-
+    
 #####Script files: 
 
     build_eduroamFreeRADIUS.sh          # rebuilds freeradius-eduroam Docker image files. Edit configuration 
@@ -64,17 +63,9 @@ A machine running Docker:
 
 * [Other OS Installation Guide](https://docs.docker.com/v1.8/installation/)
 	
-####Pre-Build Check:                    
+                   
                     
-Edit files in the following directory during Step 4 to add extra features to your FreeRADIUS eduroam IdP Server:
-        
-		files/environment/etc/raddb/
-  
-The original files can be found here:	
 
-		files/etc.ORIGINAL/raddb/                    
-
-  
 
 ###Setting Up and Running your eduroam IdP FreeRADIUS Server:
 
@@ -93,25 +84,9 @@ The original files can be found here:
 
 		$ cd eduroam-freeradius-docker
 		
-4) If you need to edit configuration files, do so now and then continue to Step 5 - "Build the Docker Image".
-
-   Note: Tutorial for adding additional configurations can be found in "Adding Extra Configurations to your FreeRADIUS eduroam Container" section of this README. 
-   
-   Otherwise head to Step 6 - "Configuration"
-    	
-
-####Build the Docker Image:
-
-5) Build the Docker image from the Dockerfile using the build_eduroamFreeRADIUS.sh script
-        
-		># ./build_eduroamFreeRADIUS.sh
-        
-Once the process is completed successfully, head to the Configuration section below.
-        
-        
 ####Configuration:
     
-6) Configure variables in restart_eduroamFreeRADIUS.sh then save and exit
+4) Configure variables in restart_eduroamFreeRADIUS.sh then save and exit
 
     	#Edit the following varibles to provide the necessary configuration for your eduroam IdP 
     	#in restart_eduroamFreeRADIUS.sh:
@@ -132,11 +107,11 @@ Notes:  It links with the './files/environment/root/run.sh' script to:
                               
 ####Running:
 
-7) Run restart_eduroamFreeRADIUS.sh:
+5) Run restart_eduroamFreeRADIUS.sh:
 
 		># ./restart_eduroamFreeRADIUS.sh
 
-8)  You will get two errors if this is your first time starting since the freeradius-eduroam container will not exist. You will receive a similar hexadecimal output if the container has started correctly
+6)  You will receive two errors if this is your first time starting the container as the freeradius-eduroam container currently does not exist. A hexadecimal output will be displayed if the container has started correctly
             
 		> 14c1813807d1de325de56987a8765b61f8b9e94422748349ab48aaab9976ef79
 
@@ -145,7 +120,7 @@ Now your FreeRADIUS eduroam IdP Docker container is running in the background
 
 ####Accessing the Container:
     
-9) To access the container, run the access_eduroamFreeRADIUS.sh script:
+7) To access the container, run the access_eduroamFreeRADIUS.sh script:
 
 		># ./access_eduroamFreeRADIUS.sh
         
@@ -154,7 +129,7 @@ Now your FreeRADIUS eduroam IdP Docker container is running in the background
 
 #####Docker testuser:
 
-10) Use the test.sh script whilst inside the container with the username and password following the command. e.g.
+8) Use the test.sh script whilst inside the container with the username and password following the command. e.g.
            
 ######Username for the test user:
 
@@ -202,7 +177,7 @@ The log will give you a good idea if something has gone wrong
                   
 #####Other Users within eduroam:
 
-11) Follow the same process as in Step 9 but using a different username and password.
+9) Follow the same process as in Step 9 but using a different username and password.
 The username and password must belong to an account that exists within your country's eduroam network.
                        
 If both tests succeed, then your eduroam IdP FreeRADIUS is working correctly.
@@ -210,7 +185,7 @@ If both tests succeed, then your eduroam IdP FreeRADIUS is working correctly.
                
 ####Exiting from the Docker FreeRADIUS Container:
     
-12) To exit out of the container, use the following command:
+10) To exit out of the container, use the following command:
         
 		># exit
 
@@ -219,11 +194,11 @@ Note: The container will still be running in the background
             
 ####Manually Start/Stop your new FreeRADIUS eduroam IdP Container:
          
-13) Stop:
+11) Stop:
 	
 		># docker stop freeradius-eduroam
         
-14) Start:
+12) Start:
    
    		># docker start freeradius-eduroam
             
@@ -233,6 +208,29 @@ ___
             
 ###Adding Extra Configurations to your FreeRADIUS eduroam Container
 
+1) Edit files in the following directory to customise your FreeRADIUS eduroam IdP Server:
+        
+		files/environment/etc/raddb/
+  
+The original files can be found here:	
+
+		files/etc.ORIGINAL/raddb/    
+
+2) Save the edited file(s) and run the build_eduroamFreeRADIUS.sh to rebuild the FreeRADIUS Docker image with your newly added configurations.
+
+	># ./build_eduroamFreeRADIUS.sh
+
+3) Run  restart_eduroamFreeRADIUS.sh  to start the Docker container using your newly built Docker image.
+
+	># ./restart_eduroamFreeRADIUS.sh
+
+
+Note: If the Docker container fails to start, the added configuration is not valid
+
+4) You have now successfully added configuration to the eduroam FreeRADIUS Docker image and subsequently created a container from it.
+
+
+#####Example
 Let's say that you need to add a couple of Access Point configurations to clients.conf for your eduroam infrastructure. 
 
 This process can be easily completed with the following steps:
@@ -280,7 +278,8 @@ Note: If the Docker container does not start, the added configuration is not val
 
 
 
-    
+ 
+  
 
     
    
