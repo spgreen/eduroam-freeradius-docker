@@ -1,6 +1,6 @@
 FROM ubuntu:precise
 
-RUN apt-get update && apt-get upgrade 
+RUN apt-get update && apt-get -y upgrade 
 
 #Installs necessary dependencies for compiling FreeRADIUS and other useful tools such as vim and tcpdump
 RUN apt-get -y install \
