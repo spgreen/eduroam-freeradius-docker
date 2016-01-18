@@ -27,6 +27,7 @@ sed -i -e "s/YOUR_REALM/$YOUR_REALM/g" -e "s/TEST_PASSWORD/$TEST_PASSWORD/g" /et
 if [ "$NO_OF_FLR_SERVERS" = 1 ]; then
 	sed -i -e '304,310 s/^/#/' /etc/raddb/clients.conf
 	sed -i -e '13,18 s/^/#/' /etc/raddb/proxy.conf
+        sed -i -e "s/\(home_server[\t ]*= FLR2\)/#&1/" /etc/raddb/proxy.conf
 fi
 
 #Configures the environment (TEST or PRODUCTION)
