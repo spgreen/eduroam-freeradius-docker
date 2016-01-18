@@ -32,4 +32,4 @@ RUN     sed -i 's/allow_vulnerable_openssl.*/allow_vulnerable_openssl = CVE-2014
 EXPOSE 1812/udp 1813/udp
 WORKDIR /root
 
-CMD /root/run.sh 
+CMD ["/root/run.sh"]

@@ -29,11 +29,11 @@ if [ "$NO_OF_FLR_SERVERS" = 1 ]; then
 	sed -i -e '13,18 s/^/#/' /etc/radddb/proxy.conf
 fi
 
-#Configures the environment (TEST or PRODUCTION) 
+#Configures the environment (TEST or PRODUCTION)
 if [ "$ENVIRONMENT" = "$ENV1" ]; then
-	/usr/local/raddb/sbin/radiusd -f 
+	exec /usr/local/raddb/sbin/radiusd -f
 elif [ "$ENVIRONMENT" = "$ENV2" ]; then
- 	/usr/local/raddb/sbin/radiusd -X -l /var/log/freeradius/radius.log -f
+	exec /usr/local/raddb/sbin/radiusd -X -l /var/log/freeradius/radius.log -f
 else
- 	echo ERROR
+	echo ERROR
 fi
