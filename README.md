@@ -93,7 +93,7 @@ A machine running Docker:
         
         NO_OF_FLR_SERVERS=1				#Select number of FLR servers in your eduroam setup (between 1 to 2)    
     	EDUROAM_FLR1=192.168.100.102
-    	EDUROAM_FLR2=192.168.100.110	#A random IP is still needed for only 1 FLR; otherwise it will not start 
+    	EDUROAM_FLR2=192.168.100.110	# Can be left blank if only running one FLR 
     	FLR_EDUROAM_SECRET=supertest
     	YOUR_REALM=docker.sg
     	YOUR_PASSWORD=docker123
