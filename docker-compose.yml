@@ -10,7 +10,7 @@ freeradius-eduroam:
         - "1812:1812/udp"
         - "1813:1813/udp"
     volumes:
-        - /var/lib/docker/host-volumes/freeradius-eduroam-logs:/usr/local/raddb/var/log/radius
+        - /var/lib/docker/host-volumes/freeradius-eduroam-logs:/var/log/radius
 
 filebeat-radius:
     restart: always
