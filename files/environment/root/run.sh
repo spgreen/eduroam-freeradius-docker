@@ -26,14 +26,15 @@ sed -i -e "s/YOUR_REALM/$YOUR_REALM/g" -e "s/TEST_PASSWORD/$TEST_PASSWORD/g" /et
 #Configures the number of FLR Servers between 1 to 2. If 1 is selected in the restart script, the 2nd FLR Variables will be commented out
 if [ "$NO_OF_FLR_SERVERS" = 1 ]; then
 	sed -i -e '304,310 s/^/#/' /etc/raddb/clients.conf
-	sed -i -e '13,18 s/^/#/' /etc/radddb/proxy.conf
+	sed -i -e '13,18 s/^/#/' /etc/raddb/proxy.conf
+        sed -i -e "s/\(home_server[\t ]*= FLR2\)/#&1/" /etc/raddb/proxy.conf
 fi
 
-#Configures the environment (TEST or PRODUCTION) 
+#Configures the environment (TEST or PRODUCTION)
 if [ "$ENVIRONMENT" = "$ENV1" ]; then
-	/usr/local/raddb/sbin/radiusd -f 
+	exec /usr/local/raddb/sbin/radiusd -f
 elif [ "$ENVIRONMENT" = "$ENV2" ]; then
- 	/usr/local/raddb/sbin/radiusd -X -l /var/log/freeradius/radius.log -f
+	exec /usr/local/raddb/sbin/radiusd -X -l /var/log/freeradius/radius.log -f
 else
- 	echo ERROR
+	echo ERROR
 fi

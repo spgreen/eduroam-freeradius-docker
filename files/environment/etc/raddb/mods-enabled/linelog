@@ -68,7 +68,7 @@ linelog {
 	#
 	#  Followed by a series of log messages.
 	# Access-Request = "Requested access: %{User-Name}"
-        Access-Request = "\"%S\",\"%{reply:Packet-Type}\",\"%{Operator-Name}\",\"%{Packet-Src-IP-Address}\",\"%{NAS-IP-Address}\",\"%{Client-Shortname}\",\"%{User-Name}\""
+        Access-Request = "\"%S\",\"%{reply:Packet-Type}\",\"%{reply:Chargeable-User-Identity}\",\"%{Operator-Name}\",\"%{Packet-Src-IP-Address}\",\"%{NAS-IP-Address}\",\"%{Client-Shortname}\",\"%{User-Name}\""
 	Access-Reject = "Rejected access: %{User-Name}"
 	Access-Challenge = "Sent challenge: %{User-Name}"
 

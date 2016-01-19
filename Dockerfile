@@ -1,6 +1,6 @@
 FROM ubuntu:precise
 
-RUN apt-get update && apt-get upgrade 
+RUN apt-get update && apt-get -y upgrade 
 
 #Installs necessary dependencies for compiling FreeRADIUS and other useful tools such as vim and tcpdump
 RUN apt-get -y install \
@@ -19,6 +19,8 @@ RUN wget ftp://ftp.freeradius.org/pub/freeradius/freeradius-server-3.0.10.tar.bz
 		./configure --prefix=/usr/local/raddb/ --sysconfdir=/etc && \
      		make && \
      		make install && \
+                cd && \
+                rm -rf /opt/freeradius-server-3.0.10 && \
     mkdir -p /var/log/freeradius/ && \
         touch /var/log/freeradius/radius.log 
 
@@ -32,4 +34,4 @@ RUN     sed -i 's/allow_vulnerable_openssl.*/allow_vulnerable_openssl = CVE-2014
 EXPOSE 1812/udp 1813/udp
 WORKDIR /root
 
-CMD /root/run.sh 
+CMD ["/root/run.sh"]
