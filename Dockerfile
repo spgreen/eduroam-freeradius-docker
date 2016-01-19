@@ -1,13 +1,13 @@
-FROM ubuntu:precise
+FROM ubuntu:trusty
 
 RUN apt-get update && apt-get -y upgrade 
 
 #Installs necessary dependencies for compiling FreeRADIUS and other useful tools such as vim and tcpdump
 RUN apt-get -y install \
     wget build-essential net-tools tcpdump lsb-base \
-    libc6 libgdbm3 libltdl7 libpam0g libperl5.14 libpython2.7 \
+    libc6 libgdbm3 libltdl7 libpam0g libperl5.18 libpython2.7 \
     libssl1.0.0 ssl-cert ca-certificates adduser libmhash-dev libtalloc-dev \
-    libperl-dev libssl-dev libpam-dev libgdb-dev libgdbm-dev  \
+    libperl-dev libssl-dev libpam-dev  \
     software-properties-common vim
 
 
