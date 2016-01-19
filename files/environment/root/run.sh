@@ -32,9 +32,9 @@ fi
 
 #Configures the environment (TEST or PRODUCTION)
 if [ "$ENVIRONMENT" = "$ENV1" ]; then
-	exec /usr/local/raddb/sbin/radiusd -f
+	exec radiusd -f
 elif [ "$ENVIRONMENT" = "$ENV2" ]; then
-	exec /usr/local/raddb/sbin/radiusd -X -l /var/log/freeradius/radius.log -f
+	exec radiusd -X -l /var/log/freeradius/radius.log -f
 else
 	echo ERROR
 fi

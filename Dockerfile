@@ -16,7 +16,7 @@ RUN wget ftp://ftp.freeradius.org/pub/freeradius/freeradius-server-3.0.10.tar.bz
         tar xvf /opt/freeradius-server-3.0.10.tar.bz2 -C /opt/ && \
         rm -f /opt/freeradius-server-3.0.10.tar.bz2 && \
     	    cd /opt/freeradius-server-3.0.10 && \
-		./configure --prefix=/usr/local/raddb/ --sysconfdir=/etc && \
+		./configure --prefix=/ --sysconfdir=/etc --localstatedir=/var && \
      		make && \
      		make install && \
                 cd && \
