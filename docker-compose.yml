@@ -1,0 +1,24 @@
+
+freeradius-eduroam:
+    restart: always
+    image: spgreen/freeradius-eduroam
+    container_name: freeradius-eduroam
+    env_file:
+        - freeradius-eduroam.env
+        - global-env.env
+    ports:
+        - "1812:1812/udp"
+        - "1813:1813/udp"
+    volumes:
+        - /var/lib/docker/host-volumes/freeradius-eduroam-logs:/usr/local/raddb/var/log/radius
+
+filebeat-radius:
+    restart: always
+    image: reannz/filebeat-radius
+    container_name: filebeat-radius
+    env_file:
+        - filebeat-radius.env
+        - global-env.env
+    volumes:
+        - /var/lib/docker/host-volumes/freeradius-eduroam-logs:/var/log/radius
+        - /var/lib/docker/host-volumes/filebeat-radius-registry:/var/lib/filebeat
