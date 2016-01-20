@@ -168,9 +168,9 @@ Execute the command. You will then receive either of these two messages:
         	c. FLR Server active but not configured correctly
         	d. FLR Server offline     
 
-Note: test.sh is using eapol_test to test the eap authentication between the FLR and the Docker eduroam IdP. If you want to see a more in-depth view of the authentication process, view the log file located here (**only in TEST environment**):
+Note: test.sh is using eapol_test to test the eap authentication between the FLR and the Docker eduroam IdP. If you want to see a more in-depth view of the authentication process, view the DEBUG log using the following command outside of the container (**only for TEST environment**):
                    
-	/var/log/freeradius/radius.log
+	docker logs -f freeradius-eduroam
                         
 The log will give you a good idea if something has gone wrong
 

@@ -20,9 +20,7 @@ RUN wget ftp://ftp.freeradius.org/pub/freeradius/freeradius-server-3.0.10.tar.bz
      		make && \
      		make install && \
                 cd && \
-                rm -rf /opt/freeradius-server-3.0.10 && \
-    mkdir -p /var/log/freeradius/ && \
-        touch /var/log/freeradius/radius.log 
+                rm -rf /opt/freeradius-server-3.0.10
 
 #Copies the necessary configs to set up the FreeRADIUS Server for eduroam use
 COPY files/environment/ /

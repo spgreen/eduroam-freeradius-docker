@@ -34,7 +34,7 @@ fi
 if [ "$ENVIRONMENT" = "$ENV1" ]; then
 	exec radiusd -f
 elif [ "$ENVIRONMENT" = "$ENV2" ]; then
-	exec radiusd -X -l /var/log/freeradius/radius.log -f
+	exec radiusd -X -l /dev/stdout -f
 else
 	echo ERROR
 fi
