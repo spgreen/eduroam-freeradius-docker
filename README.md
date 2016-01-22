@@ -127,7 +127,7 @@ Now your FreeRADIUS eduroam IdP Docker container is running in the background
         
 ####Testing Authentication:
 
-#####Docker testuser:
+#####Docker testuser using test.sh:
 
 8) Use the test.sh script whilst inside the container with the username and password following the command. e.g.
            
@@ -174,10 +174,75 @@ Note: test.sh is using eapol_test to test the eap authentication between the FLR
                         
 The log will give you a good idea if something has gone wrong
 
+#####Docker testuser using rad_eap_test:
+	
+There is another method of testing user authentication which uses rad_eap_test, a program based off of eapol_test.
+
+To test out your testuser or other eduroam user account, you can use the following command:
+
+	rad_eap_test -H EDUROAM_FLR1 -P 1812 -S FLR_EDUROAM_SECRET  -u testuser@YOUR_REALM -A anon@YOUR_REALM -p TEST_PASSWORD -m WPA-EAP -e PEAP
+	
+	
+Output:
+
+	access-accept; 1 - User authentication successful
+	access-reject; 1 - User authentication failed
+	
+You can also use -v parameter to enable a more verbose out:
+
+	access-accept; 0
+	RADIUS message: code=2 (Access-Accept) identifier=9 length=225
+	   Attribute 1 (User-Name) length=23
+	      Value: 'testuser@YOUR_REALM'
+	   Attribute 89 (Chargeable-User-Identity) length=42
+	      Value: 'e1848d1dc6b57838780d69ba9cbbe15e09ed3deb'
+	   Attribute 26 (Vendor-Specific) length=58
+	      Value: 000001371134d65111b94247f2bd2c31f2e9b640398fcfb46269eac32f48af1f73319cafce9d84ba7247caebf9d45dcd2f51205bc3190c0d
+	   Attribute 26 (Vendor-Specific) length=58
+	      Value: 000001371034df9d04efa93857a08aeb260d302033ce7495b96800d7a1434c9ce52a2f6f03eb808061fe971b2c313230154cb40a2f402783
+	   Attribute 79 (EAP-Message) length=6
+	      Value: 03090004
+	   Attribute 80 (Message-Authenticator) length=18
+	      Value: ff7fab15831628c240517f9583a818a4
+
+	
+Below are the list of parameters that can be used with rad_eap_test
+
+	# wrapper script around eapol_test from wpa_supplicant project
+	# script generates configuration for eapol_test and runs it
+	# eapol_test is program for testing RADIUS and their EAP methods authentication
+	
+	Parameters :
+	-H <address> - Address of radius server
+	-P <port> - Port of radius server
+	-S <secret> - Secret for radius server communication
+	-u <username> - Username (user@realm)
+	-A <anonymous_id> - Anonymous identity (anonymous_user@realm)
+	-p <password> - Password
+	-t <timeout> - Timeout (default is 5 seconds)
+	-m <method> - Method (WPA-EAP | IEEE8021X )
+	-v - Verbose (prints decoded last Access-accept packet)
+	-c - Prints all packets decoded
+	-s <ssid> - SSID
+	-e <method> - EAP method (PEAP | TLS | TTLS | LEAP)
+	-M <mac_addr> - MAC address in xx:xx:xx:xx:xx:xx format
+	-i <connect_info> - Connection info (in radius log: connect from <connect_info>)
+	-d <directory> - status directory (unified identifier of packets)
+	-k <user_key_file> - user certificate key file
+	-l <user_key_file_password> - password for user certificate key file
+	-j <user_cert_file> - user certificate file
+	-a <ca_cert_file> - certificate of CA
+	-2 <phase2 method> - Phase2 type (PAP,CHAP,MSCHAPV2)
+	-N - Identify and do not delete temporary files
+	-O <domain.edu.cctld> - Operator-Name value in domain name format
+	-I <ip address> - explicitly specify NAS-IP-Address
+	-C - request Chargeable-User-Identity
+
+
                   
 #####Other Users within eduroam:
 
-9) Follow the same process as in Step 9 but using a different username and password.
+9) Follow the same process as in Step 8 but using a different username and password.
 The username and password must belong to an account that exists within your country's eduroam network.
                        
 If both tests succeed, then your eduroam IdP FreeRADIUS is working correctly.
