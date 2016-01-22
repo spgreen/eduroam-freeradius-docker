@@ -19,6 +19,7 @@ server eduroam {
                             # the literal number "1" above is an important prefix! Do not change it!
                    }
                 }
+		cui
                 auth_log    # logs incoming packets to the file system. Needed for eduroam SP to fulfil logging requirements
                 suffix      # inspects packets to find eduroam style realm which is seperated by the @ symbol
                 eap         # follows the configuration from /etc/raddb/mods-available/eap
@@ -47,6 +48,7 @@ server eduroam {
  
         pre-proxy {
                 # if you want detailed logging
+		cui
                 pre_proxy_log           # logs the packet to the file system again. Attributes that have been added on during inspection are now visible
                 if("%{Packet-Type}" != "Accounting-Request") {
                         attr_filter.pre-proxy   # removes unnecessary attributes off of the request before sending the request upstream

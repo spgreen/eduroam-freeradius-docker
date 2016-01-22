@@ -19,6 +19,7 @@ authenticate {
 }
  
 post-auth {
+	cui-inner
         reply_log
         Post-Auth-Type REJECT {
                 reply_log

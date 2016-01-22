@@ -8,4 +8,6 @@ DEFAULT
         Proxy-State =* ANY,
         Calling-Station-Id =* ANY,
         Called-Station-Id =* ANY,
-        Operator-Name =* ANY
+        Operator-Name =* ANY,
+    	Class =* ANY,
+    	Chargeable-User-Identity =* ANY

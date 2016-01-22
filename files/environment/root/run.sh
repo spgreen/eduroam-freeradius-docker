@@ -5,7 +5,7 @@ ENV2="TEST"
 
 #Changes the variables to the ones in the restart script
 #FLR Server settings
-sed -i -e "s/EDUROAM_FLR1/$EDUROAM_FLR1/g" -e "s/EDUROAM_FLR2/$EDUROAM_FLR2/g" -e "s/FLR_EDUROAM_SECRET/$FLR_EDUROAM_SECRET/g" \
+sed -i -e "s/EDUROAM_FLR1/$EDUROAM_FLR1/g" -e "s/EDUROAM_FLR2/$EDUROAM_FLR2/g" -e "s/FLR_EDUROAM_SECRET/$FLR_EDUROAM_SECRET/g" -e "s/YOUR_REALM/$YOUR_REALM/g"  \
 	/etc/raddb/clients.conf
 
 #FLR Proxy Settings
@@ -25,7 +25,7 @@ sed -i -e "s/YOUR_REALM/$YOUR_REALM/g" -e "s/TEST_PASSWORD/$TEST_PASSWORD/g" /et
 
 #Configures the number of FLR Servers between 1 to 2. If 1 is selected in the restart script, the 2nd FLR Variables will be commented out
 if [ "$NO_OF_FLR_SERVERS" = 1 ]; then
-	sed -i -e '304,310 s/^/#/' /etc/raddb/clients.conf
+	sed -i -e '306,314 s/^/#/' /etc/raddb/clients.conf
 	sed -i -e '13,18 s/^/#/' /etc/raddb/proxy.conf
         sed -i -e "s/\(home_server[\t ]*= FLR2\)/#&1/" /etc/raddb/proxy.conf
 fi
