@@ -12,15 +12,15 @@ RUN apt-get -y install \
 
 
 #Compiles and installs the FreeRADIUS server from source and sets up the log file for TEST environment
-RUN wget ftp://ftp.freeradius.org/pub/freeradius/freeradius-server-3.0.10.tar.bz2 -P /opt/ && \
-        tar xvf /opt/freeradius-server-3.0.10.tar.bz2 -C /opt/ && \
-        rm -f /opt/freeradius-server-3.0.10.tar.bz2 && \
-    	    cd /opt/freeradius-server-3.0.10 && \
+RUN wget ftp://ftp.freeradius.org/pub/freeradius/freeradius-server-3.0.11.tar.bz2 -P /opt/ && \
+        tar xvf /opt/freeradius-server-3.0.11.tar.bz2 -C /opt/ && \
+        rm -f /opt/freeradius-server-3.0.11.tar.bz2 && \
+    	    cd /opt/freeradius-server-3.0.11 && \
 		./configure --prefix=/ --sysconfdir=/etc --localstatedir=/var && \
      		make && \
      		make install && \
                 cd && \
-                rm -rf /opt/freeradius-server-3.0.10
+                rm -rf /opt/freeradius-server-3.0.11
 
 #Copies the necessary configs to set up the FreeRADIUS Server for eduroam use
 COPY files/environment/ /
