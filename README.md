@@ -337,8 +337,61 @@ Save and exit.
 
 Note: If the Docker container does not start, the added configuration is not valid
 
-	
-        
+___
+
+###Connecting the eduroam-freeradius-docker to the Ancillary Tools created by Vlad Mencl, REANNZ
+By Vlad Mencl
+
+* Install Docker Compose #
+ 
+Follow the instructions at the bottom of the readme:
+
+    https://github.com/REANNZ/etcbd-public/blob/master/Docker-setup.md#install-docker-compose
+
+
+#### Running the container using Docker Compose   
+
+You have earlier deployed the institutional radius server with Docker.
+
+You can now re-deploy it to run with Docker-compose and link into the metrics tools - so that radius logs get pushed into the metrics tools.
+
+* Shut down the existing freeradius-docker container:
+
+        docker stop freeradius-docker
+        docker rm -v freeradius-docker
+
+* Clone the eduroam-freeradius-docker repository and navigate into th AncillaryToolIntegration directory there:
+
+        git clone https://github.com/spgreen/eduroam-freeradius-docker.git
+        cd eduroam-freeradius-docker/AncillaryToolIntegration
+
+* Customize ````freeradius-eduroam.env```` with the same parameters as what you've done earlier in ````eduroam-freeradius-docker-public/restart_eduroamFreeRADIUS.sh````
+  * Hint: you can see the differences by opening an additional ssh session and running
+
+          cd eduroam-freeradius-docker-public
+          git diff
+
+* Customize ````filebeat-radius.env```` - set:
+  * ````LOGSTASH_HOST```` to the hostname of your metrics server - the same VM name, xeap-wsNN.aarnet.edu.au
+  * ````RADIUS_SERVER_HOSTNAME```` to what hostname should the radius server logs be associated with.  You can again enter your VM name, xeap-wsNN.aarnet.edu.au
+
+* And in ````global-env.env````, customize system-level ````TZ```` and ````LANG```` as preferred - or you can copy over global.env from admintool:
+
+        cp ~/etcbd-public/admintoool/global-env.env .
+
+  * Note: the timezone setting here will be used to interpret the timezone on the radius logs.
+
+* Use Docker-compose to start the containers:
+
+        docker-compose up -d
+
+* Now check your radius server and the filebeat container are operating normally:
+
+        docker-compose logs
+
+* Check monitoring is still reporting your radius server as operational.
+
+* Check metrics now see the usage data from your server.
 
 
 
