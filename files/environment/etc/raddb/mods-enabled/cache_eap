@@ -1,13 +1,1 @@
-#
-#	Cache EAP responses for resiliency on intermediary proxy fail-over
-#
-cache cache_eap {
-	key = "%{%{control:State}:-%{%{reply:State}:-%{State}}}"
-
-	ttl = 15
-
-	update reply {
-		reply: += &reply:
-		&control:State := &request:State
-	}
-}
+../mods-available/cache_eap

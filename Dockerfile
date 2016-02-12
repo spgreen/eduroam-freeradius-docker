@@ -1,6 +1,6 @@
 FROM ubuntu:trusty
 
-RUN apt-get update && apt-get -y upgrade 
+RUN apt-get update && apt-get upgrade -y
 
 #Installs necessary dependencies for compiling FreeRADIUS and other useful tools such as vim and tcpdump
 RUN apt-get -y install \
@@ -8,8 +8,7 @@ RUN apt-get -y install \
     libc6 libgdbm3 libltdl7 libpam0g libperl5.18 libpython2.7 \
     libssl1.0.0 ssl-cert ca-certificates adduser libmhash-dev libtalloc-dev \
     libperl-dev libssl-dev libpam-dev  \
-    software-properties-common vim
-
+    software-properties-common vim libldap2-dev winbind krb5-user samba libkrb5-3
 
 #Compiles and installs the FreeRADIUS server from source and sets up the log file for TEST environment
 RUN wget ftp://ftp.freeradius.org/pub/freeradius/freeradius-server-3.0.11.tar.bz2 -P /opt/ && \
