@@ -11,7 +11,7 @@ RUN apt-get -y install \
     software-properties-common vim libldap2-dev winbind krb5-user samba libkrb5-3
 
 #Compiles and installs the FreeRADIUS server from source and sets up the log file for TEST environment
-RUN wget ftp://ftp.freeradius.org/pub/freeradius/freeradius-server-3.0.11.tar.bz2 -P /opt/ && \
+RUN wget ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-3.0.11.tar.bz2 -P /opt/ && \
         tar xvf /opt/freeradius-server-3.0.11.tar.bz2 -C /opt/ && \
         rm -f /opt/freeradius-server-3.0.11.tar.bz2 && \
     	    cd /opt/freeradius-server-3.0.11 && \
