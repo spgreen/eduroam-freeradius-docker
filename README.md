@@ -23,7 +23,7 @@ Based off lrhazi's freeradius-eduroam docker setup found [here](https://github.c
     proxy.conf
     clients.conf 
     radiusd.conf
-    mods-config/files/authrorize   #new location for /etc/raddb/users 
+    mods-config/files/authorize   #new location for /etc/raddb/users 
     mods-available/eap
     mods-config/attr_filter/pre-proxy
                                                             
@@ -102,7 +102,7 @@ A machine running Docker:
 Notes:  It links with the './files/environment/root/run.sh' script to:
 * configure your eduroam FLR servers with their corresponding secrets and your eduroam realm settings (yourdomain.tld) in /etc/raddb/proxy.conf
 * configure your eduroam FLR servers with their secrets in /etc/raddb/clients.conf
-* configure the testuser's realm and password in /etc/raddb/mods-config/files/authrorize 
+* configure the testuser's realm and password in /etc/raddb/mods-config/files/authorize 
 * configures between TEST or PRODUCTION environment. TEST gives more debug logging information found in /var/log/freeradius/radius.log
                               
 ####Running:
@@ -161,7 +161,7 @@ Execute the command. You will then receive either of these two messages:
 
 	"SUCCESS" - the user has successfully authenticated 
 	
-	"FAILIURE" - the user has failed authentication. Possible issues:
+	"FAILURE" - the user has failed authentication. Possible issues:
 
         	a. Mistyped user credentials
         	b. User does not exist
