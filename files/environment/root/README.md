@@ -1,6 +1,6 @@
 ##test.sh README
 
-test.sh is a shell script which uses eapol_test progmra from the wpa_supplicant package to authenticate an eduroam formatted username and password against the appropriate servers.
+test.sh is a shell script which uses eapol_test program from the wpa_supplicant package to authenticate an eduroam formatted username and password against the appropriate servers.
 
 Running the script:
 
@@ -21,7 +21,7 @@ Running the script:
             c. FLR Server: 1
     
     2.  If the "SUCCESS" message appears, the user has successfully authenticated against their FreeRADIUS server.
-        If the "FAILIURE" message appears, then the following issues could have occurred:
+        If the "FAILURE" message appears, then the following issues could have occurred:
     
             a. Mistyped user credentials
             b. User does not exist
