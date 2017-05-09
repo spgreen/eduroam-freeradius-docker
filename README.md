@@ -1,4 +1,4 @@
-##spgreen/eduroam-freeradius-docker
+## spgreen/eduroam-freeradius-docker
 
 README Author: Simon Green
 
@@ -9,16 +9,16 @@ Based off GÉANT's technical documentation found [here](https://wiki.geant.org/d
 
 Based off lrhazi's freeradius-eduroam docker setup found [here](https://github.com/lrhazi/freeradius-eduroam ).
 
-#####Note:
+##### Note:
 
 * The following symbol "$" indicates code to be run inside the terminal 
 * The following symbol ">#" indicates code to be run inside the terminal as a super user (sudo 'command', su, sudo -s)
 * The hashtag symbols "#" are comment lines with useful information
 
 
-#####Files have been edited to follow GÉANT's Technical documentation for eduroam Identity Providers (IdPs)
+##### Files have been edited to follow GÉANT's Technical documentation for eduroam Identity Providers (IdPs)
 
-######Configuration files that have been edited in /etc/raddb/:  
+###### Configuration files that have been edited in /etc/raddb/:  
 
     proxy.conf
     clients.conf 
@@ -27,17 +27,17 @@ Based off lrhazi's freeradius-eduroam docker setup found [here](https://github.c
     mods-available/eap
     mods-config/attr_filter/pre-proxy
                                                             
-######Configuration files that have been created for eduroam:    
+###### Configuration files that have been created for eduroam:    
  
     sites-enabled/eduroam  
     sites-enabled/eduroam-inner-tunnel
 
 
-######You can view just the edited files in their appropriate directories here : 
+###### You can view just the edited files in their appropriate directories here : 
 
     files/edited_raddb_config/
     
-#####Script files: 
+##### Script files: 
 
     build_eduroamFreeRADIUS.sh          # rebuilds freeradius-eduroam Docker image files. Edit configuration 
 		    							# files first in /files/etc/raddb/* for your eduroam IdP configuration
@@ -51,7 +51,7 @@ Based off lrhazi's freeradius-eduroam docker setup found [here](https://github.c
     									# other for testing accounts
 
 
-####Pre-Requisites: 
+#### Pre-Requisites: 
 
 A machine running Docker:
 
@@ -67,9 +67,9 @@ A machine running Docker:
                     
 
 
-###Setting Up and Running your eduroam IdP FreeRADIUS Server:
+### Setting Up and Running your eduroam IdP FreeRADIUS Server:
 
-####Initial Setup:
+#### Initial Setup:
     	
 1) Pull the spgreen/freeradius-eduroam Docker image from docker hub:
 	    
@@ -84,7 +84,7 @@ A machine running Docker:
 
 		$ cd eduroam-freeradius-docker
 		
-####Configuration:
+#### Configuration:
     
 4) Configure variables in restart_eduroamFreeRADIUS.sh then save and exit
 
@@ -105,7 +105,7 @@ Notes:  It links with the './files/environment/root/run.sh' script to:
 * configure the testuser's realm and password in /etc/raddb/mods-config/files/authorize 
 * configures between TEST or PRODUCTION environment. TEST gives more debug logging information found in /var/log/freeradius/radius.log
                               
-####Running:
+#### Running:
 
 5) Run restart_eduroamFreeRADIUS.sh:
 
@@ -118,20 +118,20 @@ Notes:  It links with the './files/environment/root/run.sh' script to:
 Now your FreeRADIUS eduroam IdP Docker container is running in the background
         
 
-####Accessing the Container:
+#### Accessing the Container:
     
 7) To access the container, run the access_eduroamFreeRADIUS.sh script:
 
 		># ./access_eduroamFreeRADIUS.sh
         
         
-####Testing Authentication:
+#### Testing Authentication:
 
-#####Docker testuser using test.sh:
+##### Docker testuser using test.sh:
 
 8) Use the test.sh script whilst inside the container with the username and password following the command. e.g.
            
-######Username for the test user:
+###### Username for the test user:
 
 		testuser@YOUR_REALM 
 
@@ -139,14 +139,14 @@ Now your FreeRADIUS eduroam IdP Docker container is running in the background
   
              
              
-######Password: 
+###### Password: 
 
 		TEST_PASSWORD
 
 where TEST_PASSWORD is the variable that you assigned in Step 3  
 
 
-######FLR Server: 
+###### FLR Server: 
 Enter the number 1 or 2 to indicate which FLR server you wish to send the request to.
 
 		1 = EDUROAM_FLR1
@@ -174,7 +174,7 @@ Note: test.sh is using eapol_test to test the eap authentication between the FLR
                         
 The log will give you a good idea if something has gone wrong
 
-#####Docker testuser using rad_eap_test:
+##### Docker testuser using rad_eap_test:
 	
 There is another method of testing user authentication which uses rad_eap_test, a program based off of eapol_test.
 
@@ -240,7 +240,7 @@ Below are the list of parameters that can be used with rad_eap_test
 
 
                   
-#####Other Users within eduroam:
+##### Other Users within eduroam:
 
 9) Follow the same process as in Step 8 but using a different username and password.
 The username and password must belong to an account that exists within your country's eduroam network.
@@ -248,7 +248,7 @@ The username and password must belong to an account that exists within your coun
 If both tests succeed, then your eduroam IdP FreeRADIUS is working correctly.
         
                
-####Exiting from the Docker FreeRADIUS Container:
+#### Exiting from the Docker FreeRADIUS Container:
     
 10) To exit out of the container, use the following command:
         
@@ -257,7 +257,7 @@ If both tests succeed, then your eduroam IdP FreeRADIUS is working correctly.
 Note: The container will still be running in the background
             
             
-####Manually Start/Stop your new FreeRADIUS eduroam IdP Container:
+#### Manually Start/Stop your new FreeRADIUS eduroam IdP Container:
          
 11) Stop:
 	
@@ -271,7 +271,7 @@ Note: The container will still be running in the background
             
 ___
             
-###Adding Extra Configurations to your FreeRADIUS eduroam Container
+### Adding Extra Configurations to your FreeRADIUS eduroam Container
 
 1) Edit files in the following directory to customise your FreeRADIUS eduroam IdP Server:
         
@@ -283,11 +283,11 @@ The original files can be found here:
 
 2) Save the edited file(s) and run the build_eduroamFreeRADIUS.sh to rebuild the FreeRADIUS Docker image with your newly added configurations.
 
-	># ./build_eduroamFreeRADIUS.sh
+	>\# ./build_eduroamFreeRADIUS.sh
 
 3) Run  restart_eduroamFreeRADIUS.sh  to start the Docker container using your newly built Docker image.
 
-	># ./restart_eduroamFreeRADIUS.sh
+	>\# ./restart_eduroamFreeRADIUS.sh
 
 
 Note: If the Docker container fails to start, the added configuration is not valid
@@ -295,7 +295,7 @@ Note: If the Docker container fails to start, the added configuration is not val
 4) You have now successfully added configuration to the eduroam FreeRADIUS Docker image and subsequently created a container from it.
 
 
-#####Example
+##### Example
 Let's say that you need to add a couple of Access Point configurations to clients.conf for your eduroam infrastructure. 
 
 This process can be easily completed with the following steps:
@@ -329,17 +329,17 @@ Save and exit.
 
 3) Run build_eduroamFreeRADIUS.sh to rebuild the FreeRADIUS Docker image with your newly added configurations.
 	
-	># ./build_eduroamFreeRADIUS.sh
+	>\# ./build_eduroamFreeRADIUS.sh
 
 4) Run  restart_eduroamFreeRADIUS.sh  to start the Docker container using your newly built Docker image.
 
-	># ./restart_eduroamFreeRADIUS.sh
+	>\# ./restart_eduroamFreeRADIUS.sh
 
 Note: If the Docker container does not start, the added configuration is not valid
 
 ___
 
-###Connecting the eduroam-freeradius-docker to the Ancillary Tools created by Vlad Mencl, REANNZ
+### Connecting the eduroam-freeradius-docker to the Ancillary Tools created by Vlad Mencl, REANNZ
 By Vlad Mencl
 
 * Install Docker Compose #
