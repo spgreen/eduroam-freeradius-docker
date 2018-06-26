@@ -25,7 +25,7 @@ RUN wget ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-3.0.15.ta
 COPY files/environment/ /
 
 RUN     sed -i 's/allow_vulnerable_openssl.*/allow_vulnerable_openssl = CVE-2016-6304/g' \
-                /etc/raddb/radiusd.conf # libssl1.0.1f ubuntu has had heartbleed fixed but naming scheme has not changed
+                /etc/raddb/radiusd.conf # ubuntu has had heartbleed fixed but naming scheme has not changed
 
 
 EXPOSE 1812/udp 1813/udp
