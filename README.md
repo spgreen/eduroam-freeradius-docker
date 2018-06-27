@@ -73,7 +73,7 @@ A machine running Docker:
     	
 1) Pull the spgreen/freeradius-eduroam Docker image from docker hub:
 	    
-		># docker pull spgreen/freeradius-eduroam
+		># docker pull spgreen/freeradius-eduroam:3.0.15-alpine3.7
 
 
 2) Git clone the package to your system. Ensure git is installed on your system.
