@@ -40,15 +40,15 @@ Based off lrhazi's freeradius-eduroam docker setup found [here](https://github.c
 ##### Script files: 
 
     build_eduroamFreeRADIUS.sh          # rebuilds freeradius-eduroam Docker image files. Edit configuration 
-		    							# files first in /files/etc/raddb/* for your eduroam IdP configuration
-			    						# before building the image
+                                        # files first in /files/etc/raddb/* for your eduroam IdP configuration
+                                        # before building the image
     
     restart_eduroamFreeRADIUS.sh        # starts/restarts the docker container. 
-    									# IMPORTANT: Add the necessary config for your eduroam IdP
+                                        # IMPORTANT: Add the necessary config for your eduroam IdP
     
     access_eduroamFreeRADIUS.sh         # enter into container and test out configuration. It is suggested to open two 
-    									# terminals to view /var/log/freeradius/radius.log for debugging and the 
-    									# other for testing accounts
+                                        # terminals to view /var/log/freeradius/radius.log for debugging and the 
+                                        # other for testing accounts
 
 
 #### Pre-Requisites: 
@@ -83,21 +83,25 @@ A machine running Docker:
 3) Enter into the cloned directory
 
 		$ cd eduroam-freeradius-docker
+
+4) Change the Git directory to the 3.0.15 branch
 		
+		$ git checkout 3.0.15
+
 #### Configuration:
     
-4) Configure variables in restart_eduroamFreeRADIUS.sh then save and exit
+5) Configure variables in restart_eduroamFreeRADIUS.sh then save and exit
 
     	#Edit the following varibles to provide the necessary configuration for your eduroam IdP 
     	#in restart_eduroamFreeRADIUS.sh:
         
-        NO_OF_FLR_SERVERS=1				#Select number of FLR servers in your eduroam setup (between 1 to 2)    
+        NO_OF_FLR_SERVERS=1           # Select number of FLR servers in your eduroam setup (between 1 to 2)    
     	EDUROAM_FLR1=192.168.100.102
-    	EDUROAM_FLR2=192.168.100.110	# Can be left blank if only running one FLR 
+    	EDUROAM_FLR2=192.168.100.110  # Can be left blank if only running one FLR 
     	FLR_EDUROAM_SECRET=supertest
     	YOUR_REALM=docker.sg
     	YOUR_PASSWORD=docker123
-    	ENVIRONMENT=TEST 				#Select from either TEST or PRODUCTION  
+    	ENVIRONMENT=TEST              # Select from either TEST or PRODUCTION  
 
 Notes:  It links with the './files/environment/root/run.sh' script to:
 * configure your eduroam FLR servers with their corresponding secrets and your eduroam realm settings (yourdomain.tld) in /etc/raddb/proxy.conf
@@ -107,11 +111,11 @@ Notes:  It links with the './files/environment/root/run.sh' script to:
                               
 #### Running:
 
-5) Run restart_eduroamFreeRADIUS.sh:
+6) Run restart_eduroamFreeRADIUS.sh:
 
 		># ./restart_eduroamFreeRADIUS.sh
 
-6)  You will receive two errors if this is your first time starting the container as the freeradius-eduroam container currently does not exist. A hexadecimal output will be displayed if the container has started correctly
+7)  You will receive two errors if this is your first time starting the container as the freeradius-eduroam container currently does not exist. A hexadecimal output will be displayed if the container has started correctly
             
 		> 14c1813807d1de325de56987a8765b61f8b9e94422748349ab48aaab9976ef79
 
@@ -120,7 +124,7 @@ Now your FreeRADIUS eduroam IdP Docker container is running in the background
 
 #### Accessing the Container:
     
-7) To access the container, run the access_eduroamFreeRADIUS.sh script:
+8) To access the container, run the access_eduroamFreeRADIUS.sh script:
 
 		># ./access_eduroamFreeRADIUS.sh
         
@@ -129,7 +133,7 @@ Now your FreeRADIUS eduroam IdP Docker container is running in the background
 
 ##### Docker testuser using test.sh:
 
-8) Use the test.sh script whilst inside the container with the username and password following the command. e.g.
+9) Use the test.sh script whilst inside the container with the username and password following the command. e.g.
            
 ###### Username for the test user:
 
@@ -242,7 +246,7 @@ Below are the list of parameters that can be used with rad_eap_test
                   
 ##### Other Users within eduroam:
 
-9) Follow the same process as in Step 8 but using a different username and password.
+10) Follow the same process as in Step 8 but using a different username and password.
 The username and password must belong to an account that exists within your country's eduroam network.
                        
 If both tests succeed, then your eduroam IdP FreeRADIUS is working correctly.
@@ -250,7 +254,7 @@ If both tests succeed, then your eduroam IdP FreeRADIUS is working correctly.
                
 #### Exiting from the Docker FreeRADIUS Container:
     
-10) To exit out of the container, use the following command:
+11) To exit out of the container, use the following command:
         
 		># exit
 
@@ -259,11 +263,11 @@ Note: The container will still be running in the background
             
 #### Manually Start/Stop your new FreeRADIUS eduroam IdP Container:
          
-11) Stop:
+12) Stop:
 	
 		># docker stop freeradius-eduroam
         
-12) Start:
+13) Start:
    
    		># docker start freeradius-eduroam
             
@@ -392,12 +396,3 @@ You can now re-deploy it to run with Docker-compose and link into the metrics to
 * Check monitoring is still reporting your radius server as operational.
 
 * Check metrics now see the usage data from your server.
-
-
-
-
- 
-  
-
-    
-   
