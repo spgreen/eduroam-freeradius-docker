@@ -40,15 +40,15 @@ Based off lrhazi's freeradius-eduroam docker setup found [here](https://github.c
 ##### Script files: 
 
     build_eduroamFreeRADIUS.sh          # rebuilds freeradius-eduroam Docker image files. Edit configuration 
-		    							# files first in /files/etc/raddb/* for your eduroam IdP configuration
-			    						# before building the image
+                                        # files first in /files/etc/raddb/* for your eduroam IdP configuration
+                                        # before building the image
     
     restart_eduroamFreeRADIUS.sh        # starts/restarts the docker container. 
-    									# IMPORTANT: Add the necessary config for your eduroam IdP
+                                        # IMPORTANT: Add the necessary config for your eduroam IdP
     
     access_eduroamFreeRADIUS.sh         # enter into container and test out configuration. It is suggested to open two 
-    									# terminals to view /var/log/freeradius/radius.log for debugging and the 
-    									# other for testing accounts
+                                        # terminals to view /var/log/freeradius/radius.log for debugging and the 
+                                        # other for testing accounts
 
 
 #### Pre-Requisites: 
@@ -95,13 +95,13 @@ A machine running Docker:
     	#Edit the following varibles to provide the necessary configuration for your eduroam IdP 
     	#in restart_eduroamFreeRADIUS.sh:
         
-        NO_OF_FLR_SERVERS=1				#Select number of FLR servers in your eduroam setup (between 1 to 2)    
+        NO_OF_FLR_SERVERS=1             # Select number of FLR servers in your eduroam setup (between 1 to 2)    
     	EDUROAM_FLR1=192.168.100.102
-    	EDUROAM_FLR2=192.168.100.110	# Can be left blank if only running one FLR 
+    	EDUROAM_FLR2=192.168.100.110    # Can be left blank if only running one FLR 
     	FLR_EDUROAM_SECRET=supertest
     	YOUR_REALM=docker.sg
     	YOUR_PASSWORD=docker123
-    	ENVIRONMENT=TEST 				#Select from either TEST or PRODUCTION  
+    	ENVIRONMENT=TEST                # Select from either TEST or PRODUCTION  
 
 Notes:  It links with the './files/environment/root/run.sh' script to:
 * configure your eduroam FLR servers with their corresponding secrets and your eduroam realm settings (yourdomain.tld) in /etc/raddb/proxy.conf
