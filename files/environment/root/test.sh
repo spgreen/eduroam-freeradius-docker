@@ -8,13 +8,15 @@ FLR_SELECT=$3
 sed -e "s/USERNAME/$USERNAME/" -e "s/PASSWORD/$PASSWORD/" test.conf.template > test.conf
 
 if [ "$FLR_SELECT" = 1 ]; then
-
-    eapol_test -c test.conf -a EDUROAM_FLR1 -p 1812 -s FLR_EDUROAM_SECRET
-
+    RADIUS_SERVER=EDUROAM_FLR1
 elif [ "$FLR_SELECT" = 2 ]; then
+    RADIUS_SERVER=EDUROAM_FLR2
+else
+    RADIUS_SERVER=
+fi
 
-    eapol_test -c test.conf -a EDUROAM_FLR2 -p 1812 -s FLR_EDUROAM_SECRET
-
+if [ -n "$RADIUS_SERVER" ] ; then
+    eapol_test -c test.conf -a $RADIUS_SERVER -p 1812 -s FLR_EDUROAM_SECRET
 else
     echo
     echo " Re-run the command using the following format:"
