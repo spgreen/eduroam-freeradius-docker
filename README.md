@@ -73,7 +73,7 @@ A machine running Docker:
     	
 1) Pull the spgreen/freeradius-eduroam Docker image from docker hub:
 	    
-		># docker pull spgreen/freeradius-eduroam:3.0.15-alpine3.7
+		># docker pull spgreen/freeradius-eduroam
 
 
 2) Git clone the package to your system. Ensure git is installed on your system.
@@ -84,13 +84,9 @@ A machine running Docker:
 
 		$ cd eduroam-freeradius-docker
 		
-4) Change the Git directory to the 3.0.15-alpine3.7 branch
-		
-		$ git checkout 3.0.15-alpine3.7 
-		
 #### Configuration:
     
-5) Configure variables in restart_eduroamFreeRADIUS.sh then save and exit
+4) Configure variables in restart_eduroamFreeRADIUS.sh then save and exit
 
     	#Edit the following varibles to provide the necessary configuration for your eduroam IdP 
     	#in restart_eduroamFreeRADIUS.sh:
@@ -111,11 +107,11 @@ Notes:  It links with the './files/environment/root/run.sh' script to:
                               
 #### Running:
 
-6) Run restart_eduroamFreeRADIUS.sh:
+5) Run restart_eduroamFreeRADIUS.sh:
 
 		># ./restart_eduroamFreeRADIUS.sh
 
-7)  You will receive two errors if this is your first time starting the container as the freeradius-eduroam container currently does not exist. A hexadecimal output will be displayed if the container has started correctly
+6)  You will receive two errors if this is your first time starting the container as the freeradius-eduroam container currently does not exist. A hexadecimal output will be displayed if the container has started correctly
             
 		> 14c1813807d1de325de56987a8765b61f8b9e94422748349ab48aaab9976ef79
 
@@ -124,7 +120,7 @@ Now your FreeRADIUS eduroam IdP Docker container is running in the background
 
 #### Accessing the Container:
     
-8) To access the container, run the access_eduroamFreeRADIUS.sh script:
+7) To access the container, run the access_eduroamFreeRADIUS.sh script:
 
 		># ./access_eduroamFreeRADIUS.sh
         
@@ -133,7 +129,7 @@ Now your FreeRADIUS eduroam IdP Docker container is running in the background
 
 ##### Docker testuser using test.sh:
 
-9) Use the test.sh script whilst inside the container with the username and password following the command. e.g.
+8) Use the test.sh script whilst inside the container with the username and password following the command. e.g.
            
 ###### Username for the test user:
 
@@ -246,7 +242,7 @@ Below are the list of parameters that can be used with rad_eap_test
                   
 ##### Other Users within eduroam:
 
-10) Follow the same process as in Step 8 but using a different username and password.
+9) Follow the same process as in Step 8 but using a different username and password.
 The username and password must belong to an account that exists within your country's eduroam network.
                        
 If both tests succeed, then your eduroam IdP FreeRADIUS is working correctly.
@@ -254,7 +250,7 @@ If both tests succeed, then your eduroam IdP FreeRADIUS is working correctly.
                
 #### Exiting from the Docker FreeRADIUS Container:
     
-11) To exit out of the container, use the following command:
+10) To exit out of the container, use the following command:
         
 		># exit
 
@@ -263,11 +259,11 @@ Note: The container will still be running in the background
             
 #### Manually Start/Stop your new FreeRADIUS eduroam IdP Container:
          
-12) Stop:
+11) Stop:
 	
 		># docker stop freeradius-eduroam
         
-13) Start:
+12) Start:
    
    		># docker start freeradius-eduroam
             
