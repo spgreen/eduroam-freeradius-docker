@@ -1,32 +1,14 @@
-FROM ubuntu:xenial
+FROM alpine:3.7
+MAINTAINER Simon Green <simonpetergreen@singaren.net.sg>
 
-RUN apt-get update && apt-get upgrade -y
+RUN apk update && apk upgrade 
 
 #Installs necessary dependencies for compiling FreeRADIUS and other useful tools such as vim and tcpdump
-RUN apt-get -y install \
-    wget build-essential net-tools tcpdump lsb-base \
-    libc6 libgdbm3 libltdl7 libpam0g \
-    libssl1.0.0 ssl-cert ca-certificates adduser libmhash-dev libtalloc-dev \
-    libperl-dev libssl-dev libpam-dev  \
-    software-properties-common vim libldap2-dev winbind samba
-
-#Compiles and installs the FreeRADIUS server from source and sets up the log file for TEST environment
-RUN wget ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-3.0.15.tar.bz2 -P /opt/ && \
-        tar xvf /opt/freeradius-server-3.0.15.tar.bz2 -C /opt/ && \
-        rm -f /opt/freeradius-server-3.0.15.tar.bz2 && \
-    	    cd /opt/freeradius-server-3.0.15 && \
-		./configure --prefix=/ --sysconfdir=/etc --localstatedir=/var && \
-     		make && \
-     		make install && \
-                cd && \
-                rm -rf /opt/freeradius-server-3.0.15
+RUN apk add freeradius freeradius-eap freeradius-ldap freeradius-krb5 \ 
+            tcpdump wpa_supplicant bash grep bind-tools
 
 #Copies the necessary configs to set up the FreeRADIUS Server for eduroam use
 COPY files/environment/ /
-
-RUN     sed -i 's/allow_vulnerable_openssl.*/allow_vulnerable_openssl = CVE-2016-6304/g' \
-                /etc/raddb/radiusd.conf # ubuntu has had heartbleed fixed but naming scheme has not changed
-
 
 EXPOSE 1812/udp 1813/udp
 WORKDIR /root
