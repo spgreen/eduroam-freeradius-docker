@@ -8,7 +8,8 @@ FLR_SELECT=$3
 sed -e "s/USERNAME/$USERNAME/" -e "s/PASSWORD/$PASSWORD/" test.conf.template > test.conf
 
 if [ -n "$YOUR_REALM" ] ; then
-    EAPOL_EXTRA="-N126:s:$YOUR_REALM"
+    # prefix the Operator_Name with NamespaceID value "1" (REALM) as per RFC5580
+    EAPOL_EXTRA="-N126:s:1$YOUR_REALM"
 else
     EAPOL_EXTRA=""
 fi
