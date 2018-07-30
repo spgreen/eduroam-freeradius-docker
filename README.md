@@ -98,12 +98,13 @@ A machine running Docker:
     	YOUR_REALM=docker.sg
     	YOUR_PASSWORD=docker123
     	ENVIRONMENT=TEST                # Select from either TEST or PRODUCTION  
+        TZ=UTC                          # Set timezone. e.g. Asia/Singapore, Pacific/Auckland, etc
 
-Notes:  It links with the './files/environment/root/run.sh' script to:
-* configure your eduroam FLR servers with their corresponding secrets and your eduroam realm settings (yourdomain.tld) in /etc/raddb/proxy.conf
-* configure your eduroam FLR servers with their secrets in /etc/raddb/clients.conf
-* configure the testuser's realm and password in /etc/raddb/mods-config/files/authorize 
-* configures between TEST or PRODUCTION environment. TEST gives more debug logging information found in /var/log/freeradius/radius.log
+Notes:  It links with the `./files/environment/root/run.sh` script to:
+* configure your eduroam FLR servers with their corresponding secrets and your eduroam realm settings (yourdomain.tld) in `/etc/raddb/proxy.conf`
+* configure your eduroam FLR servers with their secrets in `/etc/raddb/clients.conf`
+* configure the testuser's realm and password in `/etc/raddb/mods-config/files/authorize`
+* configures between TEST or PRODUCTION environment. TEST gives more debug logging information found in `/var/log/freeradius/radius.log`
                               
 #### Running:
 
@@ -129,30 +130,18 @@ Now your FreeRADIUS eduroam IdP Docker container is running in the background
 
 ##### Docker testuser using test.sh:
 
-8) Use the test.sh script whilst inside the container with the username and password following the command. e.g.
+8) Use the test.sh script whilst inside the container to simulate an authentication request using the eapol_test tool.
+	
+		># ./test.sh <USERNAME>@<REALM> <PASSWORD> [1-2]
+		
+	- **\<USERNAME\>** - Replace with `testuser` as that is the default user within this container.
+	- **\<REALM\>** - Replace with the `YOUR_REALM` variable assigned in Step 4.
+	- **\<PASSWORD\>** - Replace with the `YOUR_PASSWORD` variable assigned in Step 4.
+	- **\[1-2\]** - Enter the number 1 or 2 the indicate which FLR you wish to send the request to.
+		- **1** = `EDUROAM_FLR1`
+		- **2** = `EDUROAM_FLR2`
            
-###### Username for the test user:
-
-		testuser@YOUR_REALM 
-
-  where YOUR_REALM is the variable that you assigned in Step 3.  
-  
-             
-             
-###### Password: 
-
-		TEST_PASSWORD
-
-where TEST_PASSWORD is the variable that you assigned in Step 3  
-
-
-###### FLR Server: 
-Enter the number 1 or 2 to indicate which FLR server you wish to send the request to.
-
-		1 = EDUROAM_FLR1
-		2 = EDUROAM_FLR2
-           
-From the variables given in Step 3 and choosing EDUROAM_FLR1, the following test.sh command will be:
+ 	Example `test.sh` command usage using default variables from Step 4 :
                 
 		># ./test.sh testuser@docker.sg docker123 1
     
@@ -179,7 +168,7 @@ The log will give you a good idea if something has gone wrong
 There is another method of testing user authentication which uses rad_eap_test, a program based off of eapol_test.
 
 To test out your testuser or other eduroam user account, you can use the following command:
-
+			
 	rad_eap_test -H EDUROAM_FLR1 -P 1812 -S FLR_EDUROAM_SECRET  -u testuser@YOUR_REALM -A anon@YOUR_REALM -p TEST_PASSWORD -m WPA-EAP -e PEAP
 	
 	
@@ -283,11 +272,11 @@ The original files can be found here:
 
 2) Save the edited file(s) and run the build_eduroamFreeRADIUS.sh to rebuild the FreeRADIUS Docker image with your newly added configurations.
 
-	>\# ./build_eduroamFreeRADIUS.sh
+		># ./build_eduroamFreeRADIUS.sh
 
 3) Run  restart_eduroamFreeRADIUS.sh  to start the Docker container using your newly built Docker image.
 
-	>\# ./restart_eduroamFreeRADIUS.sh
+		># ./restart_eduroamFreeRADIUS.sh
 
 
 Note: If the Docker container fails to start, the added configuration is not valid
@@ -302,7 +291,7 @@ This process can be easily completed with the following steps:
 
 1) Edit clients.conf found within files/environment/etc/raddb/clients.conf in the GitHub Package/cloned directory.
 
-	$ vi files/environment/etc/raddb/clients.conf
+		$ vi files/environment/etc/raddb/clients.conf
 
 2) Add the client definition at the bottom of the file and at least a line after the FLR2 client definition. Otherwise the restart script may cause unnecessary commenting when running restart_eduroamFreeRADIUS.sh with NO_OF_FLR_SERVERS=1.
 
@@ -329,11 +318,11 @@ Save and exit.
 
 3) Run build_eduroamFreeRADIUS.sh to rebuild the FreeRADIUS Docker image with your newly added configurations.
 	
-	>\# ./build_eduroamFreeRADIUS.sh
+		># ./build_eduroamFreeRADIUS.sh
 
 4) Run  restart_eduroamFreeRADIUS.sh  to start the Docker container using your newly built Docker image.
 
-	>\# ./restart_eduroamFreeRADIUS.sh
+		># ./restart_eduroamFreeRADIUS.sh
 
 Note: If the Docker container does not start, the added configuration is not valid
 
