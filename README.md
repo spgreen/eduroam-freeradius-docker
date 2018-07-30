@@ -100,12 +100,13 @@ A machine running Docker:
     	ENVIRONMENT=TEST                # Select from either TEST or PRODUCTION  
         TZ=UTC                          # Set timezone. e.g. Asia/Singapore, Pacific/Auckland, etc
 
-Notes:  It links with the `./files/environment/root/run.sh` script to:
+**Note**:  It links with the `./files/environment/root/run.sh` script to:
 * configure your eduroam FLR servers with their corresponding secrets and your eduroam realm settings (yourdomain.tld) in `/etc/raddb/proxy.conf`
 * configure your eduroam FLR servers with their secrets in `/etc/raddb/clients.conf`
 * configure the testuser's realm and password in `/etc/raddb/mods-config/files/authorize`
 * configures between TEST or PRODUCTION environment. TEST gives more debug logging information found in `/var/log/freeradius/radius.log`
-                              
+
+
 #### Running:
 
 5) Run restart_eduroamFreeRADIUS.sh:
