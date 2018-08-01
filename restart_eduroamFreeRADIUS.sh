@@ -6,7 +6,7 @@ EDUROAM_FLR2=172.17.0.2
 FLR_EDUROAM_SECRET=sgsecret
 YOUR_REALM=docker.edu.sg
 TEST_PASSWORD=docker123
-ENVIRONMENT=TEST #TEST or PRODUCTION
+ENVIRONMENT=PRODUCTION #TEST or PRODUCTION
 TZ=UTC
 
 
@@ -15,7 +15,7 @@ if [ $NO_OF_FLR_SERVERS = 1 ] || [ $NO_OF_FLR_SERVERS = 2 ]; then
 	if [  $ENVIRONMENT = "TEST" ] || [  $ENVIRONMENT = "PRODUCTION" ]; then 
  
 		docker stop freeradius-eduroam; docker rm freeradius-eduroam
-		docker run -it  --name freeradius-eduroam -v /etc/localtime:/etc/localtime:ro -p 1812:1812/udp -p 1813:1813/udp \
+		docker run -d --name freeradius-eduroam -p 1812:1812/udp -p 1813:1813/udp \
   			-e EDUROAM_FLR1=$EDUROAM_FLR1 -e EDUROAM_FLR2=$EDUROAM_FLR2 -e FLR_EDUROAM_SECRET=$FLR_EDUROAM_SECRET \
   			-e YOUR_REALM=$YOUR_REALM -e  TEST_PASSWORD=$TEST_PASSWORD -e TZ=$TZ -e ENVIRONMENT=$ENVIRONMENT -e NO_OF_FLR_SERVERS=$NO_OF_FLR_SERVERS \
                         spgreen/freeradius-eduroam
