@@ -3,7 +3,7 @@
 README Author: Simon Green
 
 
-Docker image which allows the user to create a FreeRADIUS server with bare minimum eduroam presets, within a Docker container.
+Docker image which allows the user to create a FreeRADIUS server with bare minimum eduroam presets within a Docker container.
 
 Based off GÉANT's technical documentation found [here](https://wiki.geant.org/display/H2eduroam/How+to+deploy+eduroam+on-site+or+on+campus#Howtodeployeduroamon-siteoroncampus-FreeRADIUS).
 
@@ -267,7 +267,7 @@ ___
         
 		files/environment/etc/raddb/
   
-The original files can be found here:	
+- The original files can be found here:	
 
 		files/etc.ORIGINAL/raddb/    
 
@@ -280,9 +280,10 @@ The original files can be found here:
 		># ./restart_eduroamFreeRADIUS.sh
 
 
-Note: If the Docker container fails to start, the added configuration is not valid
+- **Note**: If the Docker container fails to start, the added configuration is not valid
+	- You can check the error messages using `># docker logs freeradius-eduroam` when `ENVRIONMENT=TEST`.
 
-4) You have now successfully added configuration to the eduroam FreeRADIUS Docker image and subsequently created a container from it.
+4) You have now successfully added configuration to the eduroam FreeRADIUS Docker image.
 
 
 ##### Example
@@ -294,7 +295,7 @@ This process can be easily completed with the following steps:
 
 		$ vi files/environment/etc/raddb/clients.conf
 
-2) Add the client definition at the bottom of the file and at least a line after the FLR2 client definition. Otherwise the restart script may cause unnecessary commenting when running restart_eduroamFreeRADIUS.sh with NO_OF_FLR_SERVERS=1.
+2) Add the client definition at the bottom of the file and at least a line after the FLR2 client definition, otherwise the restart script may cause unnecessary commenting when running restart_eduroamFreeRADIUS.sh with NO_OF_FLR_SERVERS=1.
 
 **IMPORTANT:** Place extra client definitions under the client FLR2 definition!
 
@@ -325,25 +326,18 @@ Save and exit.
 
 		># ./restart_eduroamFreeRADIUS.sh
 
-Note: If the Docker container does not start, the added configuration is not valid
+- **Note**: If the Docker container fails to start, the added configuration is not valid
+	- You can check the error messages using `># docker logs freeradius-eduroam` when `ENVRIONMENT=TEST`.
 
 ___
 
 ### Connecting the eduroam-freeradius-docker to the Ancillary Tools created by Vlad Mencl, REANNZ
-By Vlad Mencl
-
-* Install Docker Compose #
- 
-Follow the instructions at the bottom of the readme:
-
-    https://github.com/REANNZ/etcbd-public/blob/master/Docker-setup.md#install-docker-compose
-
 
 #### Running the container using Docker Compose   
 
 You have earlier deployed the institutional radius server with Docker.
 
-You can now re-deploy it to run with Docker-compose and link into the metrics tools - so that radius logs get pushed into the metrics tools.
+You can now re-deploy it to run with docker-compose and link into the metrics tools - so that radius logs get pushed into the metrics tools.
 
 * Shut down the existing freeradius-docker container:
 
@@ -379,15 +373,6 @@ You can now re-deploy it to run with Docker-compose and link into the metrics to
 
         docker-compose logs
 
-* Check monitoring is still reporting your radius server as operational.
+* Check the monitoring tool is reporting your IRS as operational.
 
-* Check metrics now see the usage data from your server.
-
-
-
-
- 
-  
-
-    
-   
+* Check the metrics tool to view usage data from your server.
